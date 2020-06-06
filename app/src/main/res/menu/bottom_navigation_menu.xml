@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btm_llamar"
+        android:title="llamada"
+        android:enabled="true"
+        android:icon="@drawable/baseline_call_black_18dp"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/btm_gasto"
+        android:title="gasto"
+        android:enabled="true"
+        android:icon="@drawable/baseline_receipt_black_18dp"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/btm_dieta"
+        android:title="dieta"
+        android:enabled="true"
+        android:icon="@drawable/baseline_card_travel_black_18dp"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.adiciongasto.AdicionGastoActivity">
+
+    <fragment
+        android:id="@+id/navegacion_superior"
+        android:name="com.example.appcursoandroidv2.ui.fragments.ToolbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_toolbar" />
+
+    <TextView
+        android:id="@+id/tv_titulo_adicion_gastos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:text="@string/titulo_registro_gastos"/>
+
+    <fragment
+        android:id="@+id/formulario_gasto_fragment"
+        android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        tools:layout="@layout/fragment_formulario_gasto" />
+
+    <Button
+        android:id="@+id/bt_create_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="enviar"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        style="@style/Widget.MaterialComponents.Button" />
+
+    <fragment android:name="com.example.appcursoandroidv2.ui.fragments.BottomNavigationFragment"
+        android:id="@+id/navegacion_navegacion_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_bottom_navigation" />
+
+
+</LinearLayout>

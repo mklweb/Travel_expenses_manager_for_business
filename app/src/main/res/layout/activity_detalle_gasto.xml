@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.detallegasto.DetalleGastoActivity">
+
+    <fragment
+        android:id="@+id/navegacion_superior"
+        android:name="com.example.appcursoandroidv2.ui.fragments.ToolbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_toolbar" />
+
+    <TextView
+        android:id="@+id/tv_titulo_detalle_gasto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:text="@string/titulo_detalle_gasto"/>
+
+    <fragment
+        android:id="@+id/formulario_gasto_fragment"
+        android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        tools:layout="@layout/fragment_formulario_gasto" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_delete_gasto"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textFontWeight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:text="@string/borrar"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.Button" />
+
+        <Button
+            android:id="@+id/bt_update_gasto"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textFontWeight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:text="@string/actualizar"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.Button" />
+
+    </LinearLayout>
+
+    <fragment android:name="com.example.appcursoandroidv2.ui.fragments.BottomNavigationFragment"
+        android:id="@+id/navegacion_navegacion_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_bottom_navigation" />
+
+
+</LinearLayout>

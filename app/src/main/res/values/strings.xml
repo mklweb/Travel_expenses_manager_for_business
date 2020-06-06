@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">App Curso Android V2</string>
+    <string name="titulo_detalle_gasto">Detalle de gasto</string>
+    <string name="action_settings">Settings</string>
+    <string name="titulo_actualiza_gastos">Modificación del gasto</string>
+    <string name="titulo_registro_gastos">Registro de gastos</string>
+    <string name="fecha">fecha</string>
+    <string name="medio_transporte">medio transporte</string>
+    <string name="kilometraje">kilometraje</string>
+    <string name="precio_km">Precio km</string>
+    <string name="peaje">peaje</string>
+    <string name="parking">parking</string>
+    <string name="comida">comida</string>
+    <string name="otros_conceptos">otros conceptos</string>
+    <string name="proyecto">proyecto</string>
+    <string name="departamento">departamento</string>
+    <string name="total">total</string>
+    <string name="borrar">borrar</string>
+    <string name="actualizar">actualizar</string>
+    <string name="page_title">Gastos Viajes</string>
+    <string name="nuevo_gasto">Nuevo gasto</string>
+    <string name="nueva_dieta">Nueva dieta</string>
+    <string name="listado_gastos">Lista gastos</string>
+    <string name="inicio">inicio</string>
+    <string name="activar_europea">activar europea</string>
+    <string name="activar_internacional">activar internacional</string>
+    <string name="info_tarjetas">información tarjetas</string>
+    <string name="activar_tarjeta">activar tarjeta</string>
+
+    <string name="enviar">Enviar</string>
+    <string name="nombre_usuario">Nombre de usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="intro_texto">Aplicación de gestión de gastos de viaje de</string>
+    <string name="maristak">Maristak</string>
+
+</resources>

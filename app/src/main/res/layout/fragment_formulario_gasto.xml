@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.FormularioGastoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/fecha"
+                    style="@style/InputNumber">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_date_gasto"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/medio_transporte"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_transport"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/kilometraje"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_kilometers"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/precio_km"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_km_price"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/peaje"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_toll"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/parking"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_parking"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/comida"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_food"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/otros_conceptos"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_other"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/proyecto"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_project_gasto"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/departamento"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_department_gasto"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="@string/total"
+                    style="@style/InputTextWrapper">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_total_gasto"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        style="@style/InputNumber"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

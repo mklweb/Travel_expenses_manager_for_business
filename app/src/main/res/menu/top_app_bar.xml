@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/baseline_search_black_18dp"
+        android:title="search"
+        android:contentDescription="content_description_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/inicio"
+        android:icon="@drawable/baseline_more_vert_black_18dp"
+        android:title="@string/inicio"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/dietas"
+        android:title="@string/nueva_dieta"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/gastos"
+        android:title="@string/nuevo_gasto"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/list_gastos"
+        android:title="@string/listado_gastos"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/activ_tarjetas"
+        android:title="@string/activar_tarjeta"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+</menu>
