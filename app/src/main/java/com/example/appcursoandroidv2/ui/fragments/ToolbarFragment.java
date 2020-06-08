@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.appcursoandroidv2.R;
-import com.example.appcursoandroidv2.ui.activtar.ActivTarActivity;
+import com.example.appcursoandroidv2.ui.activartar.ActivarTarActivity;
 import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
@@ -59,7 +59,7 @@ public class ToolbarFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case R.id.activ_tarjetas:
-                        intent = new Intent(context, ActivTarActivity.class);
+                        intent = new Intent(context, ActivarTarActivity.class);
                         startActivity(intent);
                 }
                 return false;

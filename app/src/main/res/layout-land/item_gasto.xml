@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tv_recycler_id_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:textSize="1sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_recycler_date_gasto"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_project_deparment_gasto"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_total_gasto"
+            android:layout_width="150dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:textAlignment="textEnd"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/btn_editar_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/editar"
+            android:src="@drawable/ic_baseline_edit_24" />
+
+        <ImageButton
+            android:id="@+id/btn_borrar_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/borrar"
+            android:src="@drawable/ic_baseline_delete_24" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        android:background="#CCC" />
+
+</LinearLayout>

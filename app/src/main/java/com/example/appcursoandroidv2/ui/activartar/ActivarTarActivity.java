@@ -1,4 +1,4 @@
-package com.example.appcursoandroidv2.ui.activtar;
+package com.example.appcursoandroidv2.ui.activartar;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActivTarActivity extends AppCompatActivity {
+public class ActivarTarActivity extends AppCompatActivity {
 
     //Para obtener las coordenadas de longitud y latitud:
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -57,12 +57,12 @@ public class ActivTarActivity extends AppCompatActivity {
     double longitude, latitude;
     private boolean permisosLocation = false;
     private static final int PERMISOS_LOCATION = 1;
-    private static String codPais = "NOCODE";
+    private static String codPais = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activ_tar);
+        setContentView(R.layout.activity_activar_tar);
 
         getControlViews();
 
@@ -89,26 +89,24 @@ public class ActivTarActivity extends AppCompatActivity {
         btnActEu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!permisosLocation) {
-                    Toast.makeText(ActivTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
-                }
-                else if(UE.contains(codPais) && !codPais.equalsIgnoreCase("NOCODE")) {
+                if (!permisosLocation) {
+                    Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
+                } else if (UE.contains(codPais) && !codPais.isEmpty()) {
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
                 } else {
-                    Toast.makeText(ActivTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS DENTRO DE LA UE", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS DENTRO DE LA UE", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         btnActInt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!permisosLocation) {
-                    Toast.makeText(ActivTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
-                }
-                else if(!UE.contains(codPais) && !codPais.equalsIgnoreCase("NOCODE")) {
+                if (!permisosLocation) {
+                    Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
+                } else if (!UE.contains(codPais) && !codPais.isEmpty()) {
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
                 } else {
-                    Toast.makeText(ActivTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS FUERA DE LA UE", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS FUERA DE LA UE", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -126,37 +124,36 @@ public class ActivTarActivity extends AppCompatActivity {
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        parseToString(response);
+                        parseJSON(response);
                         loadInfo();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ActivTarActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivarTarActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                }) {
-            @Override
-            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-                Map<String, String> headers = response.headers;
-                statusCode = headers.get("X-Android-Response-Source");
-                return super.parseNetworkResponse(response);
-            }
-        };
+                });
+
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void parseToString(JSONObject response) {
-        JSONArray jsonArray = response.optJSONArray("records");
-        int n = jsonArray.length();
-        try {
-            for (int i = 0; i < n; i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String key = jsonObject.keys().next();
-                String value = jsonObject.optString(key);
-                records.put(key, value);
+    private void parseJSON(JSONObject response) {
+        if (response.optString("status").equalsIgnoreCase("ok")) {
+            JSONArray jsonArray = response.optJSONArray("records");
+            int n = jsonArray.length();
+            try {
+                for (int i = 0; i < n; i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String key = jsonObject.keys().next();
+                    String value = jsonObject.optString(key);
+                    records.put(key, value);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } else {
+            String message = response.optString("error");
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -174,8 +171,12 @@ public class ActivTarActivity extends AppCompatActivity {
         //Comprueba si tenemos permisos (checkSelfPermission), si no los tiene los pide (requestPermissions)
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //No tiene permisos, pedimos permisos
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISOS_LOCATION);
 
+        } else {
+            //Tiene permisos
+            permisosLocation = true;
         }
         fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -184,12 +185,12 @@ public class ActivTarActivity extends AppCompatActivity {
                         if (location != null) {
                             longitude = location.getLongitude();
                             latitude = location.getLatitude();
-                            Geocoder geocoder = new Geocoder(ActivTarActivity.this);
+                            Geocoder geocoder = new Geocoder(ActivarTarActivity.this);
                             try {
                                 List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                                 Address address = addresses.get(0);
                                 codPais = address.getCountryCode();
-                                Toast.makeText(ActivTarActivity.this, codPais, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivarTarActivity.this, codPais, Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

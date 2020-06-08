@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_recycler_id_gasto"
@@ -20,6 +19,7 @@
         android:id="@+id/tv_recycler_date_gasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text=""
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,8 +49,8 @@
         android:id="@+id/btn_editar_gasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Editar"
-        android:src="@drawable/ic_mode_edit_black_24dp"
+        android:contentDescription="@string/editar"
+        android:src="@drawable/ic_baseline_edit_24"
         app:layout_constraintEnd_toStartOf="@+id/btn_borrar_gasto"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,8 +58,8 @@
         android:id="@+id/btn_borrar_gasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Borrar"
-        android:src="@drawable/ic_delete_black_24dp"
+        android:contentDescription="@string/borrar"
+        android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

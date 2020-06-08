@@ -33,5 +33,6 @@
     <string name="bienvenido">Bienvenido</string>
     <string name="intro_texto">Aplicación de gestión de gastos de viaje de</string>
     <string name="maristak">Maristak</string>
+    <string name="editar">editar</string>
 
 </resources>
