@@ -1,6 +1,10 @@
 package com.example.appcursoandroidv2.ui.fragments;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -9,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.appcursoandroidv2.R;
@@ -44,8 +49,15 @@ public class BottomNavigationFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.btm_llamar:
-                        item.setChecked(true);
-                        Toast.makeText(context, "Has seleccionado LLAMADA", Toast.LENGTH_SHORT).show();
+                        Intent call = new Intent(Intent.ACTION_CALL);
+                        call.setData(Uri.parse("tel:" + "1515"));
+                        if (ActivityCompat.checkSelfPermission(getActivity(),
+                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                                    Manifest.permission.CALL_PHONE},101);
+                        }else{
+                            startActivity(call);
+                        }
                         break;
                     case R.id.btm_gasto:
                         item.setChecked(true);
