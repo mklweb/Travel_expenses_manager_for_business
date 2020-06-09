@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 
 public class LoginModel {
     @Nullable
-     String nombre, password;
+    String nombre, password;
 
     public LoginModel() {
     }

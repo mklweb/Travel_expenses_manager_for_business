@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.entidades.Usuario;
-import com.example.appcursoandroidv2.ui.info_usuario.Info_usuarioActivity;
+import com.example.appcursoandroidv2.ui.infoUsuario.InfoUsuarioActivity;
 
 public class InicioActivity extends AppCompatActivity {
     Usuario user;
@@ -39,7 +39,7 @@ public class InicioActivity extends AppCompatActivity {
         btnProvisional.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sendIntent= new Intent(InicioActivity.this, Info_usuarioActivity.class);
+                Intent sendIntent= new Intent(InicioActivity.this, InfoUsuarioActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("usuario", user);
                 sendIntent.putExtras(bundle);
