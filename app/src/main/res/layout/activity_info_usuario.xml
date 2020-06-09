@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.info_usuario.Info_usuario">
+    tools:context=".ui.infoUsuario.InfoUsuarioActivity">
 
     <TextView
         android:id="@+id/tv_username"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="@+id/iv_profile_avatar"
         app:layout_constraintTop_toBottomOf="@+id/tv_dni" />
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/iv_profile_avatar"
         android:layout_width="165dp"
         android:layout_height="151dp"
@@ -54,7 +54,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/foto_freddiexl" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

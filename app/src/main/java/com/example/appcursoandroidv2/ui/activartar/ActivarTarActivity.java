@@ -8,6 +8,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class ActivarTarActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     TextView tvLastActiveEur, tvLastActiveInt, tvCardEurope, tvCardInternational, tvCurrentCard;
-    Button btnActEu, btnActInt, btnInfoCards;
+    ImageView ivTarjetaEurope, ivTarjetaInternational;
     String statusCode;
 
     Map<String, String> records;
@@ -63,7 +64,8 @@ public class ActivarTarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activar_tar);
-
+        ivTarjetaEurope = findViewById(R.id.iv_tarjeta_europe);
+        ivTarjetaInternational = findViewById(R.id.iv_tarjeta_international);
         getControlViews();
 
         setEventListeners();
@@ -71,6 +73,8 @@ public class ActivarTarActivity extends AppCompatActivity {
         records = new HashMap<String, String>();
 
         obtenerCoordenadas();
+
+        sendHttpRequest("http://10.0.2.2:4000/infocards/user1");
     }
 
     private void getControlViews() {
@@ -78,15 +82,11 @@ public class ActivarTarActivity extends AppCompatActivity {
         tvLastActiveInt = findViewById(R.id.last_active_int);
         tvCardEurope = findViewById(R.id.card_europe);
         tvCardInternational = findViewById(R.id.card_international);
-        tvCurrentCard = findViewById(R.id.current_card);
 
-        btnActEu = findViewById(R.id.btnActEu);
-        btnActInt = findViewById(R.id.btnActInt);
-        btnInfoCards = findViewById(R.id.btnInfoCards);
     }
 
     private void setEventListeners() {
-        btnActEu.setOnClickListener(new View.OnClickListener() {
+        ivTarjetaEurope.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!permisosLocation) {
@@ -98,7 +98,7 @@ public class ActivarTarActivity extends AppCompatActivity {
                 }
             }
         });
-        btnActInt.setOnClickListener(new View.OnClickListener() {
+        ivTarjetaInternational.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!permisosLocation) {
@@ -108,12 +108,6 @@ public class ActivarTarActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS FUERA DE LA UE", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        btnInfoCards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendHttpRequest("http://10.0.2.2:4000/infocards/user1");
             }
         });
     }
@@ -158,11 +152,28 @@ public class ActivarTarActivity extends AppCompatActivity {
     }
 
     private void loadInfo() {
-        tvLastActiveEur.setText("Última activacion europea: \n" + records.get(LAST_ACTIVE_EUR));
-        tvLastActiveInt.setText("Última activacion internacional: \n" + records.get(LAST_ACTIVE_INT));
-        tvCardEurope.setText("Tarjeta europea: \n" + records.get(CARD_EUROPE));
-        tvCardInternational.setText("Tarjeta internacional: \n" + records.get(CARD_INTERNATIONAL));
-        tvCurrentCard.setText("Última tarjeta activada: \n" + records.get(CURRENT_CARD));
+        String fechaE = records.get(LAST_ACTIVE_EUR);
+        String fechaE2 = fechaE.replace("T", "   ");
+        String fechaE3 = fechaE2.substring(0, 21);
+
+        String fechaI = records.get(LAST_ACTIVE_INT);
+        String fechaI2 = fechaI.replace("T", "   ");
+        String fechaI3 = fechaI2.substring(0, 21);
+
+        tvLastActiveEur.setText(fechaE3);
+        tvLastActiveInt.setText(fechaI3);
+        tvCardEurope.setText(records.get(CARD_EUROPE));
+        tvCardInternational.setText(records.get(CARD_INTERNATIONAL));
+
+        String currentcard = records.get(CURRENT_CARD);
+        if (currentcard.equals("EUROPE")){
+            ivTarjetaEurope.setImageAlpha(255);
+            ivTarjetaInternational.setImageAlpha(170);
+        }
+        if (currentcard.equals("INTERNATIONAL")){
+            ivTarjetaEurope.setImageAlpha(170);
+            ivTarjetaInternational.setImageAlpha(255);
+        }
     }
 
     private void obtenerCoordenadas() {

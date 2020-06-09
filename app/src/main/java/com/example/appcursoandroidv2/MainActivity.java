@@ -65,5 +65,6 @@ public class MainActivity extends AppCompatActivity implements LoginCallbacks {
         builder.setMessage(version);
         builder.show();
     }
+
 }
 
