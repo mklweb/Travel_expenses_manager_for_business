@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activartar.ActivarTarActivity"></activity>
+        <activity android:name=".ui.listagastos.FiltroGastosActivity"></activity>
+        <activity android:name=".ui.activartar.ActivarTarActivity" />
         <activity android:name=".ui.inicio.InicioActivity" />
         <activity android:name=".ui.detallegasto.DetalleGastoActivity" />
         <activity android:name=".ui.adiciongasto.AdicionGastoActivity" />
