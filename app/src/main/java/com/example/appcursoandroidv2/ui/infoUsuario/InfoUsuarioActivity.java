@@ -59,9 +59,10 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 return mCache.get(url);
             }
         });
-//        Date dateFecha = new Date(user.getLastConection());
-//        DateParser dp = new DateParser(dateFecha);
-//        strFecha = dp.getDateInTextFormat();
+        long longFecha = user.getLastConection();
+        Date dateFecha = new Date(longFecha);
+        DateParser dp = new DateParser(dateFecha);
+        final String strFecha = dp.getDateInTextFormat();
 
         model.getUser().observe(this, new Observer<Usuario>() {
             @Override
@@ -69,7 +70,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 tvNombreApellido.setText(user.getNameSurname());
                 tvUserName.setText(user.getUserName());
                 tvDni.setText(user.getDni());
-                tvLastConection.setText(user.getLastConection());
+                tvLastConection.setText(strFecha);
                 avatar.setImageUrl(user.getSrc(),mImageLoader);//URL en BBDD
             }
         });

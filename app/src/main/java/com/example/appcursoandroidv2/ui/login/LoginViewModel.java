@@ -100,8 +100,8 @@ public class LoginViewModel extends ViewModel {
                 if (user.getPassword().equals(loginModel.getPassword()) && user.getNameSurname().equals(loginModel.getNombre())){
                     user.setLastConection(user.getCurrentConection());
                     Date date = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                    user.setCurrentConection (sdf.format(date.getTime()));
+
+                    user.setCurrentConection (date.getTime());
                     context=view.getContext();
                     Intent sendIntent= new Intent(context, InicioActivity.class);
                     context.startActivity(sendIntent);
