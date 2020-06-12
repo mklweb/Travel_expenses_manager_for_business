@@ -80,8 +80,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         usuario.setUserName( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_ALIAS) ) );
         usuario.setPassword( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_PASSWORD) ) );
         usuario.setSrc( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_SRC) ) );
-        usuario.setLastConection( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_LAST_CONNECTION) ) );
-        usuario.setCurrentConection( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_CURRENT_CONNECTION) ) );
+        usuario.setLastConection( cursor.getLong(cursor.getColumnIndex(Constantes.USUARIO_LAST_CONNECTION) ) );
+        usuario.setCurrentConection( cursor.getLong(cursor.getColumnIndex(Constantes.USUARIO_CURRENT_CONNECTION) ) );
 
         return usuario;
     }
