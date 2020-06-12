@@ -123,7 +123,7 @@ public class GastoDAOImpl implements GastoDAO {
         if(hastaImporte > 0) {
             strBuilder.append(" AND transporte + kilometraje * precio_km + peaje + parking + restaurante + otros <=" + hastaImporte);
         }
-        strBuilder.append(" ORDER BY ").append(Constantes.GASTO_FECHA).append(" ASC1    ");
+        strBuilder.append(" ORDER BY ").append(Constantes.GASTO_FECHA).append(" ASC");
         String sql = strBuilder.toString();
         Cursor cursor = db.rawQuery(sql, null);
         List<Gasto> gastos = getResultList(cursor);
