@@ -28,9 +28,12 @@ public class InicioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-        Bundle bundle= getIntent().getExtras();
-        if(bundle != null){
-            user = (Usuario) bundle.getSerializable("usuario");
+        SQLiteDatabase db = Conexion.getInstance(InicioActivity.this);
+        UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
+        try {
+            user = userDao.findByName("Patxi");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         InicioViewModel model = new ViewModelProvider(this).get(InicioViewModel.class);
         model.setUser(user);

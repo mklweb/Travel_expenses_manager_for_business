@@ -1,5 +1,6 @@
 package com.example.appcursoandroidv2.ui.infoUsuario;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.LruCache;
@@ -14,8 +15,13 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.dao.UsuarioDAOImpl;
+import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Usuario;
 import com.example.appcursoandroidv2.ui.inicio.InicioViewModel;
+import com.example.appcursoandroidv2.utils.DateParser;
+
+import java.util.Date;
 
 public class InfoUsuarioActivity extends AppCompatActivity {
     Usuario user;
@@ -24,7 +30,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
     TextView tvDni;
     TextView tvLastConection;
     NetworkImageView avatar;
-
+    String strFecha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +41,14 @@ public class InfoUsuarioActivity extends AppCompatActivity {
         tvLastConection= findViewById(R.id.tv_last_conection);
         avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
         InicioViewModel model = new ViewModelProvider(this).get(InicioViewModel.class);
-        Bundle bundle= getIntent().getExtras();
-        if(bundle != null){
-             user = (Usuario) bundle.getSerializable("usuario");
-            model.setUser(user);
+        SQLiteDatabase db = Conexion.getInstance(InfoUsuarioActivity.this);
+        UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
+        try {
+            user = userDao.findByName("Patxi");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        model.setUser(user);
         RequestQueue mRequestQueue = Volley.newRequestQueue(InfoUsuarioActivity.this);
         final ImageLoader mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
@@ -51,7 +59,9 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 return mCache.get(url);
             }
         });
-
+//        Date dateFecha = new Date(user.getLastConection());
+//        DateParser dp = new DateParser(dateFecha);
+//        strFecha = dp.getDateInTextFormat();
 
         model.getUser().observe(this, new Observer<Usuario>() {
             @Override
@@ -60,7 +70,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 tvUserName.setText(user.getUserName());
                 tvDni.setText(user.getDni());
                 tvLastConection.setText(user.getLastConection());
-                avatar.setImageUrl("https://mikelweb.ml/img/foto_freddieXL.png",mImageLoader);//URL en BBDD
+                avatar.setImageUrl(user.getSrc(),mImageLoader);//URL en BBDD
             }
         });
     }

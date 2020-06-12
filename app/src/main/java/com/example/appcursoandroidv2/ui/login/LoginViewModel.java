@@ -2,6 +2,7 @@ package com.example.appcursoandroidv2.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,6 +11,8 @@ import android.view.View;
 import androidx.lifecycle.ViewModel;
 
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.dao.UsuarioDAOImpl;
+import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Usuario;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.google.android.material.textfield.TextInputLayout;
@@ -83,33 +86,35 @@ public class LoginViewModel extends ViewModel {
 //        TextInputLayout itlPass = view.findViewById(R.id.itl_pass);
         if (loginModel.isValid()) {
 
-//            SQLiteDatabase db = Conexion.getInstance(this);
-//            UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
-//                try {
-//                    user = userDaoImpl.findByName(loginModel.getNombre());
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-
-            user = new Usuario( "Patxi", "1", "12345678N","2020-02-04 08:33:53","2020-06-04 08:33:53", "1");
-            if (user.getPassword().equals(loginModel.getPassword()) && user.getUserName().equals(loginModel.getNombre())){
-                user.setLastConection(user.getCurrentConection());
-                Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                user.setCurrentConection (sdf.format(date.getTime()));
-                context=view.getContext();
-                Intent sendIntent= new Intent(context, InicioActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("usuario", user);
-                sendIntent.putExtras(bundle);
+            SQLiteDatabase db = Conexion.getInstance(view.getContext());
+            UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
+                try {
+                    user = userDao.findByName(loginModel.getNombre());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            if (user == null){
+                loginCallbacks.showError(noAuth);
+            }else{
+                //user = new Usuario( "Patxi", "1", "12345678N","2020-02-04 08:33:53","2020-06-04 08:33:53", "1");
+                if (user.getPassword().equals(loginModel.getPassword()) && user.getNameSurname().equals(loginModel.getNombre())){
+                    user.setLastConection(user.getCurrentConection());
+                    Date date = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    user.setCurrentConection (sdf.format(date.getTime()));
+                    context=view.getContext();
+                    Intent sendIntent= new Intent(context, InicioActivity.class);
+                    context.startActivity(sendIntent);
 //                itlNombre.setError(null);
 //                itlPass.setError(null);
-                context.startActivity(sendIntent);
+
                 }else{
-                loginCallbacks.showError(noAuth);
+                    loginCallbacks.showError(noAuth);
 //                itlNombre.setError("Mal nombre");
 //                itlPass.setError("Mal Password");
+                }
             }
+
         }else{
 //            itlNombre.setError("Falta nombre");
 //            itlPass.setError("Falta Password");
