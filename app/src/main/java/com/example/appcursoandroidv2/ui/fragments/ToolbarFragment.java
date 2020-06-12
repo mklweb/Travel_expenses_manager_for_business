@@ -2,11 +2,15 @@ package com.example.appcursoandroidv2.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +22,10 @@ import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 
 public class ToolbarFragment extends Fragment {
@@ -33,11 +41,17 @@ public class ToolbarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //userDaoImpl = new UserDaoImpl();
+        //user = userDaoImpl.findByName(loginModel.getNombre());
+        //String src = user.getSrc();
+        String src = "https://mikelweb.ml/img/foto_freddieXL.png";
         View view = inflater.inflate(R.layout.fragment_toolbar, container, false);
-
+        ImageView ivFoto= view.findViewById(R.id.fotoItem);
+        LoadImage loadimage = new LoadImage(ivFoto);
+        loadimage.execute(src);
         context = view.getContext();
         topAppBar = view.findViewById(R.id.topAppBar);
-
+        //topAppBar.setNavigationIcon(R.drawable.ic_launcher_foreground);
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -65,9 +79,28 @@ public class ToolbarFragment extends Fragment {
                 return false;
             }
         });
-
         return view;
-
-
+    }
+    private class LoadImage  extends AsyncTask<String,Void, Bitmap> {
+        ImageView imageView2;
+        public LoadImage(ImageView imageView2) {
+            this.imageView2= imageView2;
+        }
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String urLink= strings[0];
+            Bitmap bitmap= null;
+            try {
+                InputStream inputStream = new URL(urLink).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            imageView2.setImageBitmap(bitmap);
+        }
     }
 }

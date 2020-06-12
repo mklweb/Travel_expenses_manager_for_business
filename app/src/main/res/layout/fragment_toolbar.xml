@@ -20,8 +20,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/top_app_bar"
-                app:navigationIcon="@drawable/ic_launcher_foreground"
-                app:title="@string/page_title" />
+                app:navigationIcon="@drawable/ic_maristak"
+                app:titleMargin="2dp">
+
+                <ImageView
+                    android:id="@+id/fotoItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp"
+                    android:paddingLeft="35dp" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 

@@ -23,6 +23,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
     TextView tvUserName;
     TextView tvDni;
     TextView tvLastConection;
+    NetworkImageView avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +33,16 @@ public class InfoUsuarioActivity extends AppCompatActivity {
         tvUserName= findViewById(R.id.tv_username);
         tvDni= findViewById(R.id.tv_dni);
         tvLastConection= findViewById(R.id.tv_last_conection);
+        avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
         InicioViewModel model = new ViewModelProvider(this).get(InicioViewModel.class);
         Bundle bundle= getIntent().getExtras();
         if(bundle != null){
              user = (Usuario) bundle.getSerializable("usuario");
             model.setUser(user);
         }
+
         RequestQueue mRequestQueue = Volley.newRequestQueue(InfoUsuarioActivity.this);
-        ImageLoader mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
+        final ImageLoader mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
             public void putBitmap(String url, Bitmap bitmap) {
                 mCache.put(url, bitmap);
@@ -48,8 +51,8 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 return mCache.get(url);
             }
         });
-        NetworkImageView avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
-        avatar.setImageUrl("https://mikelweb.ml/img/foto_freddieXL.jpg",mImageLoader);//URL en BBDD
+
+
         model.getUser().observe(this, new Observer<Usuario>() {
             @Override
             public void onChanged(Usuario user) {
@@ -57,6 +60,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 tvUserName.setText(user.getUserName());
                 tvDni.setText(user.getDni());
                 tvLastConection.setText(user.getLastConection());
+                avatar.setImageUrl("https://mikelweb.ml/img/foto_freddieXL.png",mImageLoader);//URL en BBDD
             }
         });
     }
