@@ -27,8 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/login_menu"
-                app:navigationIcon="@drawable/ic_launcher_foreground"
-                app:title="Maristak" />
+                app:navigationIcon="@drawable/ic_maristak" />
 
         </com.google.android.material.appbar.AppBarLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +35,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField1"
+                android:id="@+id/itl_nombre"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,15 +57,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField2"
+                android:id="@+id/itl_pass"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/contraseña"
-                app:layout_constraintEnd_toEndOf="@+id/outlinedTextField1"
-                app:layout_constraintStart_toStartOf="@+id/outlinedTextField1"
-                app:layout_constraintTop_toBottomOf="@+id/outlinedTextField1">
+                app:layout_constraintEnd_toEndOf="@+id/itl_nombre"
+                app:layout_constraintStart_toStartOf="@+id/itl_nombre"
+                app:layout_constraintTop_toBottomOf="@+id/itl_nombre">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_pass"
@@ -86,9 +85,9 @@
                 android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:textColor="#FA0202"
-                app:layout_constraintEnd_toEndOf="@+id/outlinedTextField2"
-                app:layout_constraintStart_toStartOf="@+id/outlinedTextField2"
-                app:layout_constraintTop_toBottomOf="@+id/outlinedTextField2" />
+                app:layout_constraintEnd_toEndOf="@+id/itl_pass"
+                app:layout_constraintStart_toStartOf="@+id/itl_pass"
+                app:layout_constraintTop_toBottomOf="@+id/itl_pass" />
 
             <Button
                 android:id="@+id/bt_send_login"
@@ -97,8 +96,8 @@
                 android:layout_marginTop="24dp"
                 android:onClick="@{viewModel::onLoginBtnClick}"
                 android:text="@string/enviar"
-                app:layout_constraintEnd_toEndOf="@+id/outlinedTextField1"
-                app:layout_constraintStart_toStartOf="@+id/outlinedTextField1"
+                app:layout_constraintEnd_toEndOf="@+id/itl_nombre"
+                app:layout_constraintStart_toStartOf="@+id/itl_nombre"
                 app:layout_constraintTop_toBottomOf="@+id/tv_login_error" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

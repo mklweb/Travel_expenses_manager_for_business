@@ -9,11 +9,15 @@ import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.entidades.Usuario;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Pattern;
 
 public class LoginViewModel extends ViewModel {
     private LoginModel loginModel;
@@ -24,7 +28,6 @@ public class LoginViewModel extends ViewModel {
     Context context;
     //UserDaoImpl userDaoImpl;
     public LoginViewModel(){
-
     }
     public LoginViewModel(LoginCallbacks loginCallbacks) {
         this.loginModel = new LoginModel();
@@ -50,60 +53,66 @@ public class LoginViewModel extends ViewModel {
         return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 loginModel.setNombre(s.toString());
             }
         };
-     }
+    }
+
     public TextWatcher passwordTextWatcher(){
         return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 loginModel.setPassword(s.toString());
             }
         };
     }
-
     public void onLoginBtnClick (View view){
+        //TextInputLayout itlNombre = view.findViewById(R.id.itl_nombre);
+//        TextInputLayout itlPass = view.findViewById(R.id.itl_pass);
         if (loginModel.isValid()) {
-            //userDaoImpl = new UserDaoImpl();
-            //user = userDaoImpl.findByName(loginModel.getNombre());
-            user = new Usuario( "Patxi", "1", "12345678N","2020-06-04 08:33:53","22/22/2000", "1");
+
+//            SQLiteDatabase db = Conexion.getInstance(this);
+//            UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
+//                try {
+//                    user = userDaoImpl.findByName(loginModel.getNombre());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+
+            user = new Usuario( "Patxi", "1", "12345678N","2020-02-04 08:33:53","2020-06-04 08:33:53", "1");
             if (user.getPassword().equals(loginModel.getPassword()) && user.getUserName().equals(loginModel.getNombre())){
                 user.setLastConection(user.getCurrentConection());
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                user.setCurrentConection (sdf.format(c.getTime()));
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                user.setCurrentConection (sdf.format(date.getTime()));
                 context=view.getContext();
                 Intent sendIntent= new Intent(context, InicioActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("usuario", user);
                 sendIntent.putExtras(bundle);
+//                itlNombre.setError(null);
+//                itlPass.setError(null);
                 context.startActivity(sendIntent);
                 }else{
                 loginCallbacks.showError(noAuth);
+//                itlNombre.setError("Mal nombre");
+//                itlPass.setError("Mal Password");
             }
         }else{
+//            itlNombre.setError("Falta nombre");
+//            itlPass.setError("Falta Password");
             loginCallbacks.showError(faltanCampos);
         }
     }
