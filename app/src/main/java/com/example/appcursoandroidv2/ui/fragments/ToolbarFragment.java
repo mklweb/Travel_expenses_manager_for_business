@@ -20,6 +20,7 @@ import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.ui.activartar.ActivarTarActivity;
 import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
+import com.example.appcursoandroidv2.ui.listagastos.FiltroGastosActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -70,6 +71,10 @@ public class ToolbarFragment extends Fragment {
                         break;
                     case R.id.list_gastos:
                         intent = new Intent(context, ListaGastosActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.find_gastos:
+                        intent = new Intent(context, FiltroGastosActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.activ_tarjetas:

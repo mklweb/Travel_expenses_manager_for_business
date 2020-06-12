@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appcursoandroidv2.database.Constantes;
 import com.example.appcursoandroidv2.entidades.Gasto;
+import com.example.appcursoandroidv2.utils.DateParser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GastoDAOImpl implements GastoDAO {
@@ -65,6 +67,63 @@ public class GastoDAOImpl implements GastoDAO {
             strBuilder.append(", ").append(COLUMNS[i]);
         }
         strBuilder.append(" FROM ").append(Constantes.TABLA_GASTO);
+        strBuilder.append(" ORDER BY ").append(Constantes.GASTO_FECHA).append(" DESC");
+        String sql = strBuilder.toString();
+        Cursor cursor = db.rawQuery(sql, null);
+        List<Gasto> gastos = getResultList(cursor);
+        return gastos;
+    }
+
+    public List<Gasto> filtrarGastos(HashMap<String, String> params ) {
+
+        long desdeFecha, hastaFecha;
+        double desdeImporte, hastaImporte;
+
+        DateParser dp = new DateParser();
+
+        try {
+            String fechaDesdeTxt = params.get("desde fecha");
+            desdeFecha = dp.parse(fechaDesdeTxt);
+        } catch (Exception e) {
+            desdeFecha = 0;
+        }
+        try {
+            String fechaHastaTxt = params.get("hasta fecha");
+            hastaFecha = dp.parse(fechaHastaTxt);
+        } catch (Exception e) {
+            hastaFecha = 0;
+        }
+        try {
+            desdeImporte = Double.parseDouble(params.get("desde importe"));
+        } catch (Exception e) {
+            desdeImporte = 0;
+        }
+        try{
+            hastaImporte = Double.parseDouble(params.get("hasta importe"));
+        } catch (Exception e) {
+            hastaImporte = 0;
+        }
+
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.append("SELECT ").append(Constantes.GASTO_ID);
+        for (int i = 0, n = COLUMNS.length; i < n; i++) {
+            strBuilder.append(", ").append(COLUMNS[i]);
+        }
+        strBuilder.append(" FROM ").append(Constantes.TABLA_GASTO);
+        strBuilder.append(" WHERE 1=1");
+        if(desdeFecha > 0) {
+            strBuilder.append(" AND fecha >= " + desdeFecha);
+        }
+        if(hastaFecha > 0) {
+            strBuilder.append(" AND fecha <= " + hastaFecha);
+        }
+        if(desdeImporte > 0) {
+            strBuilder.append(" AND transporte + kilometraje * precio_km + peaje + parking + restaurante + otros >=" + desdeImporte);
+        }
+        if(hastaImporte > 0) {
+            strBuilder.append(" AND transporte + kilometraje * precio_km + peaje + parking + restaurante + otros <=" + hastaImporte);
+        }
+        strBuilder.append(" ORDER BY ").append(Constantes.GASTO_FECHA).append(" ASC1    ");
         String sql = strBuilder.toString();
         Cursor cursor = db.rawQuery(sql, null);
         List<Gasto> gastos = getResultList(cursor);

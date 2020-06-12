@@ -9,13 +9,13 @@ public class DateParser {
     private Date date;
 
     public DateParser() {
-
     }
 
     public DateParser(Date date) {
         this.date = date;
     }
 
+    //Parsea fechas en formato texto introducidas en los EditText
     public long parse(String f) {
         Date date = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -28,18 +28,15 @@ public class DateParser {
         return date.getTime();
     }
 
-    public String toText(Date date) {
+    public String getDateTimeInTextFormat() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy H:m");
+        return dateFormat.format(date);
+    }
+
+    public String getDateInTextFormat() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(date);
     }
 
-    public String toText() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateFormat.format(date);
-    }
-    public String toTextHour() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateFormat.format(date);
-    }
 }
 

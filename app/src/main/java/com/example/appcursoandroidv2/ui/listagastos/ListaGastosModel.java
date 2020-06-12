@@ -13,6 +13,8 @@ import com.example.appcursoandroidv2.dao.GastoDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Gasto;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ListaGastosModel extends AndroidViewModel {
@@ -25,13 +27,14 @@ public class ListaGastosModel extends AndroidViewModel {
         this.context = getApplication().getApplicationContext();
     }
 
-    public LiveData<List<Gasto>> getGastos(String args[]) {
-        if(args != null) {
-
-        }
+    public LiveData<List<Gasto>> getGastos(HashMap<String, String> params) {
         if(gastos == null) {
             gastos = new MutableLiveData<List<Gasto>>();
-            loadGastos();
+            if(params == null) {
+                loadGastos();
+            } else {
+                filtrarGastos(params);
+            }
         }
         return gastos;
     }
@@ -41,6 +44,17 @@ public class ListaGastosModel extends AndroidViewModel {
         GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
         try {
             List<Gasto> listGastos = gastoDAO.findAll();
+            gastos.setValue(listGastos);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void filtrarGastos(HashMap<String, String> params) {
+        SQLiteDatabase db = Conexion.getInstance(context);
+        GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
+        try {
+            List<Gasto> listGastos = gastoDAO.filtrarGastos(params);
             gastos.setValue(listGastos);
         }catch (Exception e) {
             e.printStackTrace();

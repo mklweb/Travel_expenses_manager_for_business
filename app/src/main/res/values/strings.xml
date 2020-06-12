@@ -34,5 +34,11 @@
     <string name="intro_texto">Aplicación de gestión de gastos de viaje de</string>
     <string name="maristak">Maristak</string>
     <string name="editar">editar</string>
+    <string name="buscar_gastos">buscar gastos</string>
+
+    <string name="fecha_desde">desde fecha</string>
+    <string name="fecha_hasta">hasta fecha</string>
+    <string name="importe_desde">desde importe</string>
+    <string name="importe_hasta">hasta importe</string>
 
 </resources>

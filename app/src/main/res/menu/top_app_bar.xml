@@ -35,6 +35,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/find_gastos"
+        android:title="@string/buscar_gastos"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/activ_tarjetas"
         android:title="@string/activar_tarjeta"
         android:contentDescription="content_description_more"

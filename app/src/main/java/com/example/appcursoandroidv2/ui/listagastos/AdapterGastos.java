@@ -54,7 +54,7 @@ public class AdapterGastos
         long longFecha = listGastos.get(position).getFecha();
         Date dateFecha = new Date(longFecha);
         DateParser dp = new DateParser(dateFecha);
-        String strFecha = dp.toText();
+        String strFecha = dp.getDateInTextFormat();
         holder.tvDateGasto.setText(strFecha);
         holder.tvProDepGasto.setText(gasto.getDep() + gasto.getPro());
         holder.tvTotalGasto.setText(String.valueOf(gasto.getTotal()));

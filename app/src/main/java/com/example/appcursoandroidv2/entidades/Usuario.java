@@ -10,6 +10,7 @@ public class Usuario implements Serializable {
     private String lastConection;//Date
     private String currentConection;//Date
     private String userName;
+    private String src;
 
     public Usuario(){
     }
@@ -21,7 +22,7 @@ public class Usuario implements Serializable {
         this.lastConection = lastConection;
         this.currentConection = currentConection;
         this.userName = userName;
-
+        this.src = src;
     }
 
     public long getId() {
@@ -71,4 +72,12 @@ public class Usuario implements Serializable {
     public String getUserName() {return userName;}
 
     public void setUserName(String userName) {this.userName = userName;}
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
 }

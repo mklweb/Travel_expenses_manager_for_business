@@ -3,7 +3,7 @@ package com.example.appcursoandroidv2.database;
 public class Constantes {
 
     public static final String DB_NAME = "viajes";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
 
     public static final String TABLA_GASTO = "gasto";
     public static final String GASTO_ID = "id";
@@ -34,8 +34,10 @@ public class Constantes {
     public static final String TABLA_USUARIO = "usuario";
     public static final String USUARIO_ID = "id";
     public static final String USUARIO_DNI = "dni";
-    public static final String USUARIO_NOMBRE = "nombre";
+    public static final String USUARIO_NOMBRE = "name_surname";
     public static final String USUARIO_PASSWORD = "password";
+    public static final String USUARIO_ALIAS = "user_name";
+    public static final String USUARIO_SRC = "src";
     public static final String USUARIO_LAST_CONNECTION = "last_conn";
     public static final String USUARIO_CURRENT_CONNECTION = "current_conn";
 }

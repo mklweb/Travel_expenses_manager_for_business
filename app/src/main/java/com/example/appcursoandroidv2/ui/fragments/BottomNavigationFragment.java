@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import com.example.appcursoandroidv2.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -28,11 +27,9 @@ public class BottomNavigationFragment extends Fragment {
     Context context;
     BottomNavigationView bottomNavigation;
 
-
     public BottomNavigationFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

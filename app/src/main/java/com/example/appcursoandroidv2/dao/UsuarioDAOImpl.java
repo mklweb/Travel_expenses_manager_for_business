@@ -1,9 +1,11 @@
 package com.example.appcursoandroidv2.dao;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appcursoandroidv2.database.Constantes;
+import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.entidades.Usuario;
 
 import java.util.List;
@@ -36,12 +38,15 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public int modify(Usuario usuario) throws Exception {
-        return 0;
+        String[] args = new String[]{String.valueOf(usuario.getId())};
+        return db.update(Constantes.TABLA_GASTO, getContentValues(usuario), Constantes.GASTO_ID + "=?", args);
     }
 
     @Override
     public Usuario findById(long id) throws Exception {
-        return null;
+        String qry = "SELECT * FROM " + Constantes.TABLA_USUARIO + " WHERE " + Constantes.USUARIO_ID + "=" + id;
+        Cursor cursor = db.rawQuery(qry, null);
+        return getResultOne(cursor);
     }
 
     @Override
@@ -71,8 +76,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     private Usuario getNextCursor(Cursor cursor, Usuario usuario) {
         usuario.setId( cursor.getLong(cursor.getColumnIndex(Constantes.USUARIO_ID) ) );
         usuario.setDni( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_DNI) ) );
-        usuario.setUserName( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_NOMBRE) ) );
+        usuario.setNameSurname( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_NOMBRE) ) );
+        usuario.setUserName( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_ALIAS) ) );
         usuario.setPassword( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_PASSWORD) ) );
+        usuario.setSrc( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_SRC) ) );
+        usuario.setLastConection( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_LAST_CONNECTION) ) );
+        usuario.setCurrentConection( cursor.getString(cursor.getColumnIndex(Constantes.USUARIO_CURRENT_CONNECTION) ) );
+
         return usuario;
+    }
+
+    private ContentValues getContentValues(Usuario usuario) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constantes.USUARIO_CURRENT_CONNECTION, usuario.getCurrentConection());
+        contentValues.put(Constantes.USUARIO_LAST_CONNECTION, usuario.getLastConection());
+        return contentValues;
     }
 }
