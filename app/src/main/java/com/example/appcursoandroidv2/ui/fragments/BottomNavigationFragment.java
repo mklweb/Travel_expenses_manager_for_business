@@ -17,13 +17,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BottomNavigationFragment extends Fragment {
-
+    Intent intent;
     Context context;
     BottomNavigationView bottomNavigation;
 
@@ -58,7 +59,8 @@ public class BottomNavigationFragment extends Fragment {
                         break;
                     case R.id.btm_gasto:
                         item.setChecked(true);
-                        Toast.makeText(context, "Has seleccionado GASTO", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(context, AdicionGastoActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.btm_dieta:
                         item.setChecked(true);

@@ -62,13 +62,6 @@ public class ToolbarFragment extends Fragment {
                         intent = new Intent(context, InicioActivity.class);
                         startActivity(intent);
                         break;
-                    case R.id.gastos:
-                        intent = new Intent(context, AdicionGastoActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.dietas:
-                        Toast.makeText(context, "Has seleccionado dietas", Toast.LENGTH_SHORT).show();
-                        break;
                     case R.id.list_gastos:
                         intent = new Intent(context, ListaGastosActivity.class);
                         startActivity(intent);
