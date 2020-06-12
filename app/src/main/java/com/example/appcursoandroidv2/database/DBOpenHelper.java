@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.Date;
+
 public class DBOpenHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_TABLE_GASTO = new StringBuilder().
@@ -46,6 +48,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             .append(Constantes.USUARIO_DNI + " TEXT NOT NULL,")
             .append(Constantes.USUARIO_NOMBRE + " TEXT NOT NULL UNIQUE,")
             .append(Constantes.USUARIO_PASSWORD + " TEXT NOT NULL,")
+            .append(Constantes.USUARIO_ALIAS + " TEXT NOT NULL, ")
+            .append(Constantes.USUARIO_SRC + " TEXT NOT NULL, ")
             .append(Constantes.USUARIO_LAST_CONNECTION + " REAL,")
             .append(Constantes.USUARIO_CURRENT_CONNECTION + " REAL)")
             .toString();
@@ -61,7 +65,16 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_PRECIO);
         db.execSQL(SQL_CREATE_TABLE_USUARIO);
         db.execSQL("INSERT INTO precio ('dieta_eu', 'dieta_resto', 'precio_km') values (60, 100, 0.3)");
-        db.execSQL("INSERT INTO  usuario ('id', 'dni', 'nombre', 'password') values (1, '14984352X', 'Mikel Oceja', '123456')");
+        db.execSQL("INSERT INTO  usuario ("
+                + Constantes.USUARIO_ID + ","
+                + Constantes.USUARIO_DNI + ","
+                + Constantes.USUARIO_NOMBRE + ","
+                + Constantes.USUARIO_PASSWORD + ","
+                + Constantes.USUARIO_ALIAS + ","
+                + Constantes.USUARIO_SRC + ","
+                + Constantes.USUARIO_LAST_CONNECTION + ","
+                + Constantes.USUARIO_CURRENT_CONNECTION
+                + ") values(1, '12345678N', 'Patxi', '1', '1', 'https://mikelweb.ml/img/foto_freddieXL.png'," + (new Date().getTime() - 86400000) + "," + new Date().getTime() + ")");
     }
 
     @Override

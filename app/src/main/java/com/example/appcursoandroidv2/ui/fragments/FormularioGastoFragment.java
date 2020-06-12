@@ -74,7 +74,7 @@ public class FormularioGastoFragment extends Fragment {
         // Cuando está creando uno nuevo no recibe nada.
         this.gasto = gasto;
         DateParser dp = new DateParser(new Date(gasto.getFecha()));
-        etDateGasto.setText(dp.toText());
+        etDateGasto.setText(dp.getDateInTextFormat());
         etTransport.setText(String.valueOf(gasto.getTransporte()));
         etKilometers.setText(String.valueOf(gasto.getKilometraje()));
         etKmPrice.setText(String.valueOf(gasto.getPrecioKm()));

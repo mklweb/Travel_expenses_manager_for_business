@@ -14,6 +14,8 @@ import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.ui.detallegasto.DetalleGastoActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ListaGastosActivity extends AppCompatActivity {
@@ -32,11 +34,11 @@ public class ListaGastosActivity extends AppCompatActivity {
         recyclerGastos.setLayoutManager(layoutManager);
 
         //Para recoger parámetros por intent
-        String args[] = null;
+        HashMap<String, String> params = (HashMap<String, String>) getIntent().getSerializableExtra("params");
 
         //ViewModel
         ListaGastosModel listaGastosModel = new ViewModelProvider(this).get(ListaGastosModel.class);
-        listaGastosModel.getGastos(args).observe(this, new Observer<List<Gasto>>() {
+        listaGastosModel.getGastos(params).observe(this, new Observer<List<Gasto>>() {
             @Override
             public void onChanged(final List<Gasto> gastos) {
                 // Instanciamos el adaptador
