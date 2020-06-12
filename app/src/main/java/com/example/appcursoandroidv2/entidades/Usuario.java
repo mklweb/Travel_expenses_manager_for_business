@@ -7,15 +7,15 @@ public class Usuario implements Serializable {
     private String nameSurname;
     private String password;
     private String dni;
-    private String lastConection;//Date
-    private String currentConection;//Date
+    private long lastConection;//Milisegundos desde 1/1/1970
+    private long currentConection;//Milisegundos desde 1/1/1970
     private String userName;
     private String src;
 
     public Usuario(){
     }
 
-    public Usuario(String nameSurname, String password, String dni, String lastConection,String currentConection, String userName) {
+    public Usuario(String nameSurname, String password, String dni, long lastConection,long currentConection, String userName) {
         this.nameSurname = nameSurname;
         this.password = password;
         this.dni = dni;
@@ -57,17 +57,17 @@ public class Usuario implements Serializable {
         this.dni = dni;
     }
 
-    public String getLastConection() {
+    public long getLastConection() {
         return lastConection;
     }
 
-    public void setLastConection(String lastConection) {
+    public void setLastConection(long lastConection) {
         this.lastConection = lastConection;
     }
 
-    public String getCurrentConection() {return currentConection;}
+    public long getCurrentConection() {return currentConection;}
 
-    public void setCurrentConection(String currentConection) {this.currentConection = currentConection;}
+    public void setCurrentConection(long currentConection) {this.currentConection = currentConection;}
 
     public String getUserName() {return userName;}
 
