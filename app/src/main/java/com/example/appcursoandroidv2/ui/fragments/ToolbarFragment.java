@@ -70,6 +70,12 @@ public class ToolbarFragment extends Fragment {
                         intent = new Intent(context, FiltroGastosActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.list_dietas:
+                        Toast.makeText(context, "Has seleccionado LISTA DIETA", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.find_dietas:
+                        Toast.makeText(context, "Has seleccionado BUSQUEDA DIETA", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.activ_tarjetas:
                         intent = new Intent(context, ActivarTarActivity.class);
                         startActivity(intent);

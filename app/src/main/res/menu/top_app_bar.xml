@@ -27,6 +27,17 @@
         android:title="@string/buscar_gastos"
         android:contentDescription="content_description_more"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/list_dietas"
+        android:title="@string/listado_dietas"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/find_dietas"
+        android:title="@string/buscar_dietas"
+        android:contentDescription="content_description_more"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/activ_tarjetas"

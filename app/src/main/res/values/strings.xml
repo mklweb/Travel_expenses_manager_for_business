@@ -40,5 +40,7 @@
     <string name="fecha_hasta">hasta fecha</string>
     <string name="importe_desde">desde importe</string>
     <string name="importe_hasta">hasta importe</string>
+    <string name="listado_dietas">listado_dietas</string>
+    <string name="buscar_dietas">buscar_dietas</string>
 
 </resources>
