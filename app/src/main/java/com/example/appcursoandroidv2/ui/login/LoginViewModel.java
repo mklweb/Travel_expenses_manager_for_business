@@ -82,8 +82,7 @@ public class LoginViewModel extends ViewModel {
         };
     }
     public void onLoginBtnClick (View view){
-        //TextInputLayout itlNombre = view.findViewById(R.id.itl_nombre);
-//        TextInputLayout itlPass = view.findViewById(R.id.itl_pass);
+
         if (loginModel.isValid()) {
 
             SQLiteDatabase db = Conexion.getInstance(view.getContext());

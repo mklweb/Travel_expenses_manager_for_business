@@ -17,6 +17,7 @@ import com.example.appcursoandroidv2.ui.login.LoginCallbacks;
 import com.example.appcursoandroidv2.ui.login.LoginViewModel;
 import com.example.appcursoandroidv2.ui.login.LoginViewModelFactory;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity implements LoginCallbacks {
     TextView tv_loginError;
@@ -34,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements LoginCallbacks {
         toolbar2 = findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar2);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        TextInputLayout itlNombre = findViewById(R.id.itl_nombre);
+//        TextInputLayout itlPass =findViewById(R.id.itl_pass);
+//        itlNombre.setError("Falta nombre");
+//        itlPass.setError("Falta Password");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

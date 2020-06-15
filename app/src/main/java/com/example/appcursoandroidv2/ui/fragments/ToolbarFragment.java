@@ -2,6 +2,7 @@ package com.example.appcursoandroidv2.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -17,8 +18,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.dao.UsuarioDAOImpl;
+import com.example.appcursoandroidv2.database.Conexion;
+import com.example.appcursoandroidv2.entidades.Usuario;
 import com.example.appcursoandroidv2.ui.activartar.ActivarTarActivity;
 import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
+import com.example.appcursoandroidv2.ui.infoUsuario.InfoUsuarioActivity;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.example.appcursoandroidv2.ui.listagastos.FiltroGastosActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
@@ -33,7 +38,7 @@ public class ToolbarFragment extends Fragment {
 
     Context context;
     MaterialToolbar topAppBar;
-
+    Usuario user;
     public ToolbarFragment() {
         // Required empty public constructor
     }
@@ -41,18 +46,20 @@ public class ToolbarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //userDaoImpl = new UserDaoImpl();
-        //user = userDaoImpl.findByName(loginModel.getNombre());
-        //String src = user.getSrc();
-        String src = "https://mikelweb.ml/img/foto_freddieXL.png";
+        SQLiteDatabase db = Conexion.getInstance(getContext());
+        UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
+        try {
+            user = userDao.findByName("Patxi");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String src = user.getSrc();
         View view = inflater.inflate(R.layout.fragment_toolbar, container, false);
         ImageView ivFoto= view.findViewById(R.id.fotoItem);
         LoadImage loadimage = new LoadImage(ivFoto);
         loadimage.execute(src);
         context = view.getContext();
         topAppBar = view.findViewById(R.id.topAppBar);
-        //topAppBar.setNavigationIcon(R.drawable.ic_launcher_foreground);
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -61,6 +68,10 @@ public class ToolbarFragment extends Fragment {
                     case R.id.inicio:
                         intent = new Intent(context, InicioActivity.class);
                         startActivity(intent);
+                        break;
+                    case R.id.ic_showuser:
+                        Intent sendIntent= new Intent(context, InfoUsuarioActivity.class);
+                        startActivity(sendIntent);
                         break;
                     case R.id.list_gastos:
                         intent = new Intent(context, ListaGastosActivity.class);

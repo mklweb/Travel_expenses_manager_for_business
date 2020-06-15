@@ -6,20 +6,20 @@
         android:id="@+id/btm_gasto"
         android:title="gasto"
         android:enabled="true"
-        android:icon="@drawable/baseline_receipt_black_18dp"
+        android:icon="@drawable/ic_gastos"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/btm_llamar"
         android:title="llamada"
         android:enabled="true"
-        android:icon="@drawable/baseline_call_black_18dp"
+        android:icon="@drawable/ic_phone"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/btm_dieta"
         android:title="dieta"
         android:enabled="true"
-        android:icon="@drawable/baseline_card_travel_black_18dp"
+        android:icon="@drawable/ic_dietas"
         app:showAsAction="ifRoom" />
 
 

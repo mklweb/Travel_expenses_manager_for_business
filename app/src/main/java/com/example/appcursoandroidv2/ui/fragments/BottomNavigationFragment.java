@@ -51,7 +51,7 @@ public class BottomNavigationFragment extends Fragment {
                         call.setData(Uri.parse("tel:" + "1515"));
                         if (ActivityCompat.checkSelfPermission(getActivity(),
                                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                                ActivityCompat.requestPermissions(getActivity(), new String[]{
                                     Manifest.permission.CALL_PHONE},101);
                         }else{
                             startActivity(call);

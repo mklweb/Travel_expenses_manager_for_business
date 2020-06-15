@@ -23,7 +23,7 @@ import java.util.Date;
 public class InicioActivity extends AppCompatActivity {
     Usuario user;
     TextView tvWelcome;
-    Button btnProvisional;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +44,7 @@ public class InicioActivity extends AppCompatActivity {
                 tvWelcome.setText(user.getNameSurname());
             }
         });
-        btnProvisional = findViewById(R.id.provisional);
-        btnProvisional.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sendIntent= new Intent(InicioActivity.this, InfoUsuarioActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("usuario", user);
-                sendIntent.putExtras(bundle);
-                startActivity(sendIntent);
-            }
-        });
+
     }
 
 }

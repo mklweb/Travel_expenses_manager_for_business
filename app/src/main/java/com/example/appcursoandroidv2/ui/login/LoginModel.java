@@ -4,7 +4,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
-public class LoginModel {
+import java.io.Serializable;
+
+public class LoginModel implements Serializable {
     @Nullable
     String nombre, password;
 
