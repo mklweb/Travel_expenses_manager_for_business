@@ -27,6 +27,7 @@ public class BottomNavigationFragment extends Fragment {
     Intent intent;
     Context context;
     BottomNavigationView bottomNavigation;
+    final static int PERMISOS_LLAMADA = 101;
 
     public BottomNavigationFragment() {
         // Required empty public constructor
@@ -51,8 +52,8 @@ public class BottomNavigationFragment extends Fragment {
                         call.setData(Uri.parse("tel:" + "1515"));
                         if (ActivityCompat.checkSelfPermission(getActivity(),
                                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(getActivity(), new String[]{
-                                    Manifest.permission.CALL_PHONE},101);
+                                requestPermissions(new String[]{
+                                    Manifest.permission.CALL_PHONE},PERMISOS_LLAMADA);
                         }else{
                             startActivity(call);
                         }
@@ -72,5 +73,24 @@ public class BottomNavigationFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case PERMISOS_LLAMADA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent call = new Intent(Intent.ACTION_CALL);
+                    call.setData(Uri.parse("tel:" + "1515"));
+                    startActivity(call);
+                } else {
+                    Toast.makeText(context, "Sin los permisos de localización no podrás activar las tarjetas", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            // Aquí más casos dependiendo de los permisos
+            // case OTRO_CODIGO_DE_PERMISOS...
+        }
     }
 }
