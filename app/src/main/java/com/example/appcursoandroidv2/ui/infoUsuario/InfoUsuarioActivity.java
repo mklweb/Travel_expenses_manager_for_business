@@ -18,7 +18,7 @@ import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.dao.UsuarioDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Usuario;
-import com.example.appcursoandroidv2.ui.inicio.InicioViewModel;
+import com.example.appcursoandroidv2.ui.vm.UsuarioViewModel;
 import com.example.appcursoandroidv2.utils.DateParser;
 
 import java.util.Date;
@@ -40,7 +40,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
         tvDni= findViewById(R.id.tv_dni);
         tvLastConection= findViewById(R.id.tv_last_conection);
         avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
-        InicioViewModel model = new ViewModelProvider(this).get(InicioViewModel.class);
+        UsuarioViewModel model = new ViewModelProvider(this).get(UsuarioViewModel.class);
         SQLiteDatabase db = Conexion.getInstance(InfoUsuarioActivity.this);
         UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
         try {

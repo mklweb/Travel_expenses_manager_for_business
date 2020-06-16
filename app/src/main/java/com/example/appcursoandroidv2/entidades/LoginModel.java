@@ -1,6 +1,4 @@
-package com.example.appcursoandroidv2.ui.login;
-
-import android.text.TextUtils;
+package com.example.appcursoandroidv2.entidades;
 
 import androidx.annotation.Nullable;
 
@@ -35,8 +33,6 @@ public class LoginModel implements Serializable {
     public void setPassword(@Nullable String password) {
         this.password = password;
     }
-    public boolean isValid(){
-        return !TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(password);
-    }
+
 
 }

@@ -1,10 +1,7 @@
 package com.example.appcursoandroidv2.ui.inicio;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +12,7 @@ import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.dao.UsuarioDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Usuario;
-import com.example.appcursoandroidv2.ui.infoUsuario.InfoUsuarioActivity;
-import com.example.appcursoandroidv2.utils.DateParser;
-
-import java.util.Date;
+import com.example.appcursoandroidv2.ui.vm.UsuarioViewModel;
 
 public class InicioActivity extends AppCompatActivity {
     Usuario user;
@@ -35,7 +29,7 @@ public class InicioActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        InicioViewModel model = new ViewModelProvider(this).get(InicioViewModel.class);
+        UsuarioViewModel model = new ViewModelProvider(this).get(UsuarioViewModel.class);
         model.setUser(user);
         tvWelcome= findViewById(R.id.tv_welcome);
         model.getUser().observe(this, new Observer<Usuario>() {
