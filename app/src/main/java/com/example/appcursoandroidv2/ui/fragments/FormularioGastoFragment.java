@@ -2,6 +2,8 @@ package com.example.appcursoandroidv2.ui.fragments;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +18,10 @@ import com.example.appcursoandroidv2.dao.GastoDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.utils.DateParser;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,8 +42,12 @@ public class FormularioGastoFragment extends Fragment {
     EditText etDeparmentGasto;
     EditText etTotalGasto;
 
+    TextInputLayout lyDateGasto;
+
+    String regEx = "^([1-9]|[0-2][0-9]|3[0-1])(\\/|-)([1-9]|0[1-9]|1[0-2])\\2(\\d{4})$"; // Patrón validación fechas
+
     View view;
-    FragmentActivity fragmentActivity;
+    //FragmentActivity fragmentActivity;
 
     public FormularioGastoFragment() {
         // Required empty public constructor
@@ -51,6 +59,7 @@ public class FormularioGastoFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_formulario_gasto, container, false);
         getControlViews();
+        setEventListeners();
         return view;
     }
 
@@ -67,6 +76,30 @@ public class FormularioGastoFragment extends Fragment {
         etProjectGasto = view.findViewById(R.id.et_project_gasto);
         etDeparmentGasto = view.findViewById(R.id.et_department_gasto);
         etTotalGasto = view.findViewById(R.id.et_toll);
+        lyDateGasto = view.findViewById(R.id.ly_date_gasto);
+    }
+
+    private void setEventListeners() {
+        etDateGasto.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Pattern pattern = Pattern.compile(regEx);
+                if(pattern.matcher(etDateGasto.getText().toString()).matches()) {
+                    lyDateGasto.setError(null);
+                }
+            }
+        });
+
     }
 
     public void setDatosToView(Gasto gasto) {
@@ -87,6 +120,10 @@ public class FormularioGastoFragment extends Fragment {
     }
 
     private void getDatosFromView() {
+        if(!validar()) {
+            etDateGasto.requestFocus();
+            return;
+        }
         // Cuando se crea un nuevo gasto
         if(gasto == null) {
             gasto = new Gasto();
@@ -231,5 +268,16 @@ public class FormularioGastoFragment extends Fragment {
 
     public Gasto getGasto() {
         return gasto;
+    }
+
+    public boolean validar() {
+        Pattern pattern = Pattern.compile(regEx);
+        if(!pattern.matcher(etDateGasto.getText().toString()).matches()) {
+            lyDateGasto.setError("Fecha incorrecta");
+            return false;
+        } else {
+            lyDateGasto.setError(null);
+            return true;
+        }
     }
 }

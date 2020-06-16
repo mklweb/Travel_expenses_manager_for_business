@@ -16,6 +16,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ly_date_gasto"
                 style="@style/InputNumber"
                 android:hint="@string/fecha">
 
@@ -34,7 +35,8 @@
                     android:id="@+id/et_transport"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +48,8 @@
                     android:id="@+id/et_kilometers"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +61,8 @@
                     android:id="@+id/et_km_price"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +74,8 @@
                     android:id="@+id/et_toll"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +87,8 @@
                     android:id="@+id/et_parking"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +100,8 @@
                     android:id="@+id/et_food"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +113,8 @@
                     android:id="@+id/et_other"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,7 +148,8 @@
                     android:id="@+id/et_total_gasto"
                     style="@style/InputNumber"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
