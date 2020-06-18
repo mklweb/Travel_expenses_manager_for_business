@@ -246,9 +246,9 @@ public class FormularioGastoFragment extends Fragment {
     }
 
     public boolean actualizar() {
-        if(validaFecha()&& (!gasto.getPro().isEmpty() || !gasto.getDep().isEmpty())) {
+        if(validaFecha()) {
             getDatosFromView();
-            if(gasto.getTotal() > 0) {
+            if(gasto.getTotal() > 0 && (!gasto.getPro().isEmpty() || !gasto.getDep().isEmpty())) {
                 SQLiteDatabase db = Conexion.getInstance(getActivity());
                 GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
                 try {
