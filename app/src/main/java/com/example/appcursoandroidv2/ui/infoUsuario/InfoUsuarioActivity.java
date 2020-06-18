@@ -62,7 +62,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
         long longFecha = user.getLastConection();
         Date dateFecha = new Date(longFecha);
         DateParser dp = new DateParser(dateFecha);
-        final String strFecha = dp.getDateInTextFormat();
+        final String strFecha = dp.getDateTimeInTextFormat();
 
         model.getUser().observe(this, new Observer<Usuario>() {
             @Override

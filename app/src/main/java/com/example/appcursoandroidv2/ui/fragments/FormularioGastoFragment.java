@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.dao.GastoDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
+import com.example.appcursoandroidv2.database.Constantes;
 import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.utils.DateParser;
 import com.google.android.material.textfield.TextInputLayout;
@@ -44,10 +45,7 @@ public class FormularioGastoFragment extends Fragment {
 
     TextInputLayout lyDateGasto;
 
-    String regEx = "^([1-9]|[0-2][0-9]|3[0-1])(\\/|-)([1-9]|0[1-9]|1[0-2])\\2(\\d{4})$"; // Patrón validación fechas
-
     View view;
-    //FragmentActivity fragmentActivity;
 
     public FormularioGastoFragment() {
         // Required empty public constructor
@@ -75,7 +73,7 @@ public class FormularioGastoFragment extends Fragment {
         etOther = view.findViewById(R.id.et_other);
         etProjectGasto = view.findViewById(R.id.et_project_gasto);
         etDeparmentGasto = view.findViewById(R.id.et_department_gasto);
-        etTotalGasto = view.findViewById(R.id.et_toll);
+        etTotalGasto = view.findViewById(R.id.et_total_gasto);
         lyDateGasto = view.findViewById(R.id.ly_date_gasto);
     }
 
@@ -90,21 +88,33 @@ public class FormularioGastoFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-
+            /** Solo para que cuando corrige una fecha errónea se quite el mensaje de error
+             *  La validacion la hace el método validaFecha()
+             *  */
             @Override
             public void afterTextChanged(Editable s) {
-                Pattern pattern = Pattern.compile(regEx);
+                Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
                 if(pattern.matcher(etDateGasto.getText().toString()).matches()) {
                     lyDateGasto.setError(null);
                 }
             }
         });
 
+        etDateGasto.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                   validaFecha();
+                }
+            }
+        });
     }
 
+    /** Cuando viene de modificar recibe un gasto
+     *  y se llama a este método. Cuando está creando
+     *  un gasto nuevo no recibe nada
+     *  */
     public void setDatosToView(Gasto gasto) {
-        // Cuando viene de modificar recibe un gasto
-        // Cuando está creando uno nuevo no recibe nada.
         this.gasto = gasto;
         DateParser dp = new DateParser(new Date(gasto.getFecha()));
         etDateGasto.setText(dp.getDateInTextFormat());
@@ -117,13 +127,13 @@ public class FormularioGastoFragment extends Fragment {
         etOther.setText(String.valueOf(gasto.getOtros()));
         etProjectGasto.setText(String.valueOf(gasto.getPro()));
         etDeparmentGasto.setText(String.valueOf(gasto.getDep()));
+        etTotalGasto.setText(String.valueOf(gasto.getTotal()));
     }
 
+    /** Obtine los valores de los campos y los carga en el
+     *  pojo gasto, si no tienen valores carga 0
+     *  */
     private void getDatosFromView() {
-        if(!validar()) {
-            etDateGasto.requestFocus();
-            return;
-        }
         // Cuando se crea un nuevo gasto
         if(gasto == null) {
             gasto = new Gasto();
@@ -214,30 +224,50 @@ public class FormularioGastoFragment extends Fragment {
     }
 
     public void registrar() {
-        SQLiteDatabase db = Conexion.getInstance(getActivity());
-        GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
-        getDatosFromView();
-        try {
-            long n = gastoDAO.add(gasto);
-            db.close();
-            resetFormulario();
-            Toast.makeText(getActivity().getApplicationContext(), "Se ha creado un gasto nuevo con id " + n, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(validaFecha()) {
+            getDatosFromView();
+            if(gasto.getTotal() > 0) {
+                SQLiteDatabase db = Conexion.getInstance(getActivity());
+                GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
+                try {
+                    long n = gastoDAO.add(gasto);
+                    db.close();
+                    resetFormulario();
+                    Toast.makeText(getActivity().getApplicationContext(), "Se ha creado un gasto nuevo con id " + n, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(getContext(), "Tiene que rellenar al menos un concepto de gasto", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Introduzca una fecha correcta", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void actualizar() {
-        SQLiteDatabase db = Conexion.getInstance(getActivity());
-        GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
-        getDatosFromView();
-        try {
-            gastoDAO.modify(gasto);
-            db.close();
-            resetFormulario();
-            Toast.makeText(getActivity().getApplicationContext(), "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean actualizar() {
+        if(validaFecha()) {
+            getDatosFromView();
+            if(gasto.getTotal() > 0) {
+                SQLiteDatabase db = Conexion.getInstance(getActivity());
+                GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
+                try {
+                    gastoDAO.modify(gasto);
+                    db.close();
+                    resetFormulario();
+                    Toast.makeText(getActivity().getApplicationContext(), "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            } else {
+                Toast.makeText(getContext(), "Tiene que rellenar al menos un concepto de gasto", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } else {
+            Toast.makeText(getContext(), "Introduzca una fecha correcta", Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
@@ -253,7 +283,7 @@ public class FormularioGastoFragment extends Fragment {
         }
     }
 
-    public void resetFormulario() {
+    private void resetFormulario() {
         etDateGasto.setText("");
         etTransport.setText("");
         etKilometers.setText("");
@@ -270,9 +300,12 @@ public class FormularioGastoFragment extends Fragment {
         return gasto;
     }
 
-    public boolean validar() {
-        Pattern pattern = Pattern.compile(regEx);
-        if(!pattern.matcher(etDateGasto.getText().toString()).matches()) {
+    private boolean validaFecha() {
+        Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
+        String date = etDateGasto.getText().toString();
+        if(date.isEmpty()) {
+            return false;
+        } else if(!pattern.matcher(date).matches()) {
             lyDateGasto.setError("Fecha incorrecta");
             return false;
         } else {

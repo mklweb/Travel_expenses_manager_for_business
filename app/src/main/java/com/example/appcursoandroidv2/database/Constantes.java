@@ -40,4 +40,7 @@ public class Constantes {
     public static final String USUARIO_SRC = "src";
     public static final String USUARIO_LAST_CONNECTION = "last_conn";
     public static final String USUARIO_CURRENT_CONNECTION = "current_conn";
+
+    public static final String DATE_VALIDATION = "^([1-9]|[0-2][0-9]|3[0-1])(\\/)([1-9]|0[1-9]|1[0-2])\\2(\\d{4})$";
+    public static final String DATE_VALIDATION2 = "^([1-9]|[0-2][0-9]|3[0-1])(\\/|-)([1-9]|0[1-9]|1[0-2])\\2(\\d{4})$";
 }

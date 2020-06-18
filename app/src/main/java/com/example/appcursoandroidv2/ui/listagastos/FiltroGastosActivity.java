@@ -31,13 +31,13 @@ public class FiltroGastosActivity extends AppCompatActivity {
         btnFitroGastosEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String, String> params = fragment.getDatosFromView();
-                Intent intent = new Intent(FiltroGastosActivity.this, ListaGastosActivity.class);
-                intent.putExtra("params", params);
-                startActivity(intent);
+                if(fragment.validarDesdeFecha() && fragment.validarHastaFecha()) {
+                    HashMap<String, String> params = fragment.getDatosFromView();
+                    Intent intent = new Intent(FiltroGastosActivity.this, ListaGastosActivity.class);
+                    intent.putExtra("params", params);
+                    startActivity(intent);
+                }
             }
         });
-
-
     }
 }

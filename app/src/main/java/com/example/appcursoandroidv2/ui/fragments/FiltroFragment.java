@@ -12,11 +12,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.database.Constantes;
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class FiltroFragment extends Fragment {
 
     EditText etFechaDesde, etFechaHasta, etImporteDesde, etImporteHasta;
+    TextInputLayout lyFechaDesde, lyFechaHasta;
     View view;
 
     public FiltroFragment() {
@@ -29,6 +34,7 @@ public class FiltroFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_filtro, container, false);
         getControlViews();
+        setEventListeners();
         return view;
     }
 
@@ -37,9 +43,19 @@ public class FiltroFragment extends Fragment {
         etFechaHasta = view.findViewById(R.id.et_fecha_hasta);
         etImporteDesde = view.findViewById(R.id.et_importe_desde);
         etImporteHasta = view.findViewById(R.id.et_importe_hasta);
+        lyFechaDesde = view.findViewById(R.id.ly_fecha_desde);
+        lyFechaHasta = view.findViewById(R.id.ly_fecha_hasta);
     }
 
-    private void validarCampos() {
+    private void setEventListeners() {
+        etFechaDesde.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    validarDesdeFecha();
+                }
+            }
+        });
         etFechaDesde.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -50,10 +66,24 @@ public class FiltroFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-
+            /**
+             * Solo para que cuando corrige una fecha errónea se quite el mensaje de error
+             * La validacion la hace el método validar()
+             **/
             @Override
             public void afterTextChanged(Editable s) {
-
+                Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
+                if(pattern.matcher(etFechaDesde.getText().toString()).matches()) {
+                    lyFechaDesde.setError(null);
+                }
+            }
+        });
+        etFechaHasta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    validarHastaFecha();
+                }
             }
         });
         etFechaHasta.addTextChangedListener(new TextWatcher() {
@@ -66,42 +96,16 @@ public class FiltroFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-
+            /**
+             * Solo para que cuando corrige una fecha errónea se quite el mensaje de error
+             * La validacion la hace el método validar()
+             **/
             @Override
             public void afterTextChanged(Editable s) {
-
-            }
-        });
-        etImporteDesde.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        etImporteHasta.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
+                if(pattern.matcher(etFechaHasta.getText().toString()).matches()) {
+                    lyFechaHasta.setError(null);
+                }
             }
         });
     }
@@ -130,5 +134,27 @@ public class FiltroFragment extends Fragment {
             params.put("hasta importe", strAux);
         }
         return params;
+    }
+
+    public boolean validarDesdeFecha() {
+        Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
+        if(!pattern.matcher(etFechaDesde.getText().toString()).matches() && !etFechaDesde.getText().toString().isEmpty()) {
+            lyFechaDesde.setError("Fecha incorrecta");
+            return false;
+        } else {
+            lyFechaDesde.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validarHastaFecha() {
+        Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
+        if(!pattern.matcher(etFechaHasta.getText().toString()).matches() && !etFechaHasta.getText().toString().isEmpty()) {
+            lyFechaHasta.setError("Fecha incorrecta");
+            return false;
+        } else {
+            lyFechaHasta.setError(null);
+            return true;
+        }
     }
 }

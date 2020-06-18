@@ -39,7 +39,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public int modify(Usuario usuario) throws Exception {
         String[] args = new String[]{String.valueOf(usuario.getId())};
-        return db.update(Constantes.TABLA_GASTO, getContentValues(usuario), Constantes.GASTO_ID + "=?", args);
+        return db.update(Constantes.TABLA_USUARIO, getContentValues(usuario), Constantes.GASTO_ID + "=?", args);
     }
 
     @Override

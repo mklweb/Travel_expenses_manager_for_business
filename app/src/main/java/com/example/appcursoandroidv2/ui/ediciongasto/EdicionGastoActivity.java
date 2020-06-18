@@ -47,10 +47,10 @@ public class EdicionGastoActivity extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment.actualizar();
-                Toast.makeText(EdicionGastoActivity.this, "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EdicionGastoActivity.this, ListaGastosActivity.class);
-                startActivity(intent);
+                if(fragment.actualizar()) {
+                    Intent intent = new Intent(EdicionGastoActivity.this, ListaGastosActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

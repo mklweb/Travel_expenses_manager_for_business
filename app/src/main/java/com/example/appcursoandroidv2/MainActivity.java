@@ -157,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
                             user.setLastConection(user.getCurrentConection());
                             Date date = new Date();
                             user.setCurrentConection (date.getTime());
+                            try {
+                                userDao.modify(user);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
                             Intent sendIntent= new Intent(MainActivity.this, InicioActivity.class);
                             startActivity(sendIntent);

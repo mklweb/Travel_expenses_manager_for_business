@@ -75,6 +75,15 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 + Constantes.USUARIO_LAST_CONNECTION + ","
                 + Constantes.USUARIO_CURRENT_CONNECTION
                 + ") values(1, '12345678N', 'Patxi', '1', '1', 'https://mikelweb.ml/img/foto_freddieXL.png'," + (new Date().getTime() - 86400000) + "," + new Date().getTime() + ")");
+        db.execSQL(
+                "INSERT INTO gasto (fecha,transporte, kilometraje, precio_km, peaje, parking, restaurante, otros, pro, dep)\n" +
+                "VALUES \n" +
+                    "(1552867200000,100,'',0.3,'','',50,'','ABC',''),\n" +
+                    "(1556064000000,'',300,0.3,16,15,40,'','CCC',''),\n" +
+                    "(1559520000000,200,'','',16,15,40,'','CCC',''),\n" +
+                    "(1571011200000,'',300,0.3,16,15,40,'','CCC',''),\n" +
+                    "(1578528000000,150,'','','','',80,'','CCC',''),\n" +
+                    "(1595289600000,'',400,0.3,10,13,60,'','ZX','');");
     }
 
     @Override
