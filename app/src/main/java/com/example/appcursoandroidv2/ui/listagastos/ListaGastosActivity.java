@@ -43,7 +43,7 @@ public class ListaGastosActivity extends AppCompatActivity {
             public void onChanged(final List<Gasto> gastos) {
                 // Instanciamos el adaptador
                 adapterGastos = new AdapterGastos(gastos);
-                // Asignamos el listener al adaptador para cuando hace click en un item
+                //Asignamos el listener al adaptador para cuando hace click en un item
                 adapterGastos.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

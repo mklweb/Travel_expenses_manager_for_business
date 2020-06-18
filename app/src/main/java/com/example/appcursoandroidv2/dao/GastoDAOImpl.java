@@ -112,16 +112,44 @@ public class GastoDAOImpl implements GastoDAO {
         strBuilder.append(" FROM ").append(Constantes.TABLA_GASTO);
         strBuilder.append(" WHERE 1=1");
         if(desdeFecha > 0) {
-            strBuilder.append(" AND fecha >= " + desdeFecha);
+            strBuilder.append(" AND ").append(Constantes.GASTO_FECHA).append(" >= ").append(desdeFecha);
         }
         if(hastaFecha > 0) {
-            strBuilder.append(" AND fecha <= " + hastaFecha);
+            strBuilder.append(" AND ").append(Constantes.GASTO_FECHA).append(" <= ").append(hastaFecha);
         }
         if(desdeImporte > 0) {
-            strBuilder.append(" AND transporte + kilometraje * precio_km + peaje + parking + restaurante + otros >=" + desdeImporte);
+            strBuilder.append(" AND ")
+                    .append(Constantes.GASTO_TRANSPORTE)
+                    .append("+")
+                    .append(Constantes.GASTO_KILOMETRAJE)
+                    .append("*")
+                    .append(Constantes.GASTO_PRECIO_KM)
+                    .append("+").append(Constantes.GASTO_PEAJE )
+                    .append("+")
+                    .append( Constantes.GASTO_PARKING)
+                    .append("+")
+                    .append( Constantes.GASTO_RESTAURANTE)
+                    .append("+")
+                    .append( Constantes.GASTO_OTROS)
+                    .append(" >= ")
+                    .append(desdeImporte);
         }
         if(hastaImporte > 0) {
-            strBuilder.append(" AND transporte + kilometraje * precio_km + peaje + parking + restaurante + otros <=" + hastaImporte);
+            strBuilder.append(" AND ")
+                    .append(Constantes.GASTO_TRANSPORTE)
+                    .append("+")
+                    .append(Constantes.GASTO_KILOMETRAJE)
+                    .append("*")
+                    .append(Constantes.GASTO_PRECIO_KM)
+                    .append("+").append(Constantes.GASTO_PEAJE )
+                    .append("+")
+                    .append( Constantes.GASTO_PARKING)
+                    .append("+")
+                    .append( Constantes.GASTO_RESTAURANTE)
+                    .append("+")
+                    .append( Constantes.GASTO_OTROS)
+                    .append(" <= ")
+                    .append(hastaImporte);
         }
         strBuilder.append(" ORDER BY ").append(Constantes.GASTO_FECHA).append(" ASC");
         String sql = strBuilder.toString();
