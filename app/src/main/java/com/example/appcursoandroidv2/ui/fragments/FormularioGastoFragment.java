@@ -226,7 +226,7 @@ public class FormularioGastoFragment extends Fragment {
     public void registrar() {
         if(validaFecha()) {
             getDatosFromView();
-            if(gasto.getTotal() > 0) {
+            if(gasto.getTotal() > 0 && (!gasto.getPro().isEmpty() || !gasto.getDep().isEmpty())) {
                 SQLiteDatabase db = Conexion.getInstance(getActivity());
                 GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
                 try {
@@ -238,7 +238,7 @@ public class FormularioGastoFragment extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                Toast.makeText(getContext(), "Tiene que rellenar al menos un concepto de gasto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Tiene que rellenar al menos un concepto de gasto y un proyecto o un departemento", Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(getContext(), "Introduzca una fecha correcta", Toast.LENGTH_SHORT).show();
@@ -246,7 +246,7 @@ public class FormularioGastoFragment extends Fragment {
     }
 
     public boolean actualizar() {
-        if(validaFecha()) {
+        if(validaFecha()&& (!gasto.getPro().isEmpty() || !gasto.getDep().isEmpty())) {
             getDatosFromView();
             if(gasto.getTotal() > 0) {
                 SQLiteDatabase db = Conexion.getInstance(getActivity());
@@ -262,7 +262,7 @@ public class FormularioGastoFragment extends Fragment {
                     return false;
                 }
             } else {
-                Toast.makeText(getContext(), "Tiene que rellenar al menos un concepto de gasto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Tiene que rellenar al menos un concepto de gasto y un proyecto o un departemento", Toast.LENGTH_SHORT).show();
                 return false;
             }
         } else {
