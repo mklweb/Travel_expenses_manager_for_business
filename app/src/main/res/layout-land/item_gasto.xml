@@ -1,67 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_recycler_id_gasto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
+        android:cursorVisible="false"
+        android:textSize="1sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_recycler_id_gasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:cursorVisible="false"
-            android:textSize="1sp"
-            android:visibility="invisible" />
+    <TextView
+        android:id="@+id/tv_recycler_date_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_recycler_date_gasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_total_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="gravity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_recycler_date_gasto"
+        app:layout_constraintEnd_toStartOf="@+id/btn_editar_gasto"
+        app:layout_constraintTop_toTopOf="@+id/tv_recycler_date_gasto" />
 
-        <TextView
-            android:id="@+id/tv_project_deparment_gasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/tv_project_deparment_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_recycler_date_gasto"
+        app:layout_constraintStart_toEndOf="@+id/tv_recycler_date_gasto"
+        app:layout_constraintTop_toTopOf="@+id/tv_recycler_date_gasto" />
 
-        <TextView
-            android:id="@+id/tv_total_gasto"
-            android:layout_width="150dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="20dp"
-            android:textAlignment="textEnd"
-            android:textSize="18sp" />
+    <ImageButton
+        android:id="@+id/btn_editar_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/editar"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_borrar_gasto"
+        app:layout_constraintEnd_toStartOf="@+id/btn_borrar_gasto"
+        app:layout_constraintTop_toTopOf="@+id/btn_borrar_gasto" />
 
-        <ImageButton
-            android:id="@+id/btn_editar_gasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:contentDescription="@string/editar"
-            android:src="@drawable/ic_baseline_edit_24" />
-
-        <ImageButton
-            android:id="@+id/btn_borrar_gasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:contentDescription="@string/borrar"
-            android:src="@drawable/ic_baseline_delete_24" />
-
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_borrar_gasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/borrar"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginBottom="3dp"
+        android:background="#ccc"
         android:orientation="horizontal"
-        android:background="#CCC" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
