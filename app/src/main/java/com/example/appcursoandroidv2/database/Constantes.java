@@ -25,6 +25,8 @@ public class Constantes {
     public static final String DIETA_PAIS = "pais";
     public static final String DIETA_CIUDAD = "ciudad";
     public static final String DIETA_DIETA = "dieta";
+    public static final String DIETA_PRO = "pro";
+    public static final String DIETA_DEP = "dep";
 
     public static final String TABLA_PRECIO = "precio";
     public static final String PRECIO_DIETA_EU = "dieta_eu";

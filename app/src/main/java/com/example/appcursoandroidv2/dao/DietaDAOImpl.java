@@ -23,7 +23,10 @@ public class DietaDAOImpl implements DietaDAO {
             Constantes.DIETA_FECHA_FIN,
             Constantes.DIETA_PAIS,
             Constantes.DIETA_CIUDAD,
-            Constantes.DIETA_DIETA};
+            Constantes.DIETA_DIETA,
+            Constantes.DIETA_PRO,
+            Constantes.DIETA_DEP
+    };
 
     public DietaDAOImpl(SQLiteDatabase db) {
         this.db = db;
@@ -79,6 +82,8 @@ public class DietaDAOImpl implements DietaDAO {
         contentValues.put(Constantes.DIETA_PAIS, dieta.getPais());
         contentValues.put(Constantes.DIETA_CIUDAD, dieta.getCiudad());
         contentValues.put(Constantes.DIETA_DIETA, dieta.getDieta());
+        contentValues.put(Constantes.DIETA_PRO, dieta.getProyect());
+        contentValues.put(Constantes.DIETA_DEP, dieta.getDepartment());
         return contentValues;
     }
 
@@ -89,6 +94,8 @@ public class DietaDAOImpl implements DietaDAO {
         dieta.setPais( cursor.getString(cursor.getColumnIndex(Constantes.DIETA_PAIS) ) );
         dieta.setCiudad( cursor.getString(cursor.getColumnIndex(Constantes.DIETA_CIUDAD) ) );
         dieta.setDieta( cursor.getDouble(cursor.getColumnIndex(Constantes.DIETA_DIETA) ) );
+        dieta.setProyect( cursor.getString(cursor.getColumnIndex(Constantes.DIETA_PRO) ) );
+        dieta.setDepartment( cursor.getString(cursor.getColumnIndex(Constantes.DIETA_DEP) ) );
         return dieta;
     }
 

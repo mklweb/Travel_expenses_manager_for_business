@@ -32,6 +32,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             append(Constantes.DIETA_FECHA_FIN + " REAL NOT NULL,").
             append(Constantes.DIETA_PAIS + " TEXT NOT NULL,").
             append(Constantes.DIETA_CIUDAD + " TEXT NOT NULL,").
+            append(Constantes.DIETA_PRO + " TEXT,").
+            append(Constantes.DIETA_DEP + " TEXT,").
             append(Constantes.DIETA_DIETA + " REAL)").
             toString();
 
@@ -84,9 +86,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "(1571011200000,'',300,0.3,16,15,40,'','CCC',''),\n" +
                     "(1578528000000,150,'','','','',80,'','CCC',''),\n" +
                     "(1595289600000,'',400,0.3,10,13,60,'','ZX','');");
-        db.execSQL(
-                ""
-        );
     }
 
     @Override
