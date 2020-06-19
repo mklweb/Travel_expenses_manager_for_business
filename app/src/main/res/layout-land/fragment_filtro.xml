@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.FiltroFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_fecha_desde"
+            style="@style/InputTextWrapper"
+            android:layout_marginTop="10dp"
+            android:hint="@string/fecha_desde">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_fecha_desde"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ly_fecha_hasta"
+            style="@style/InputTextWrapper"
+            android:hint="@string/fecha_hasta">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_fecha_hasta"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/InputTextWrapper"
+            android:layout_marginTop="10dp"
+            android:hint="@string/importe_desde">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_importe_desde"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/InputTextWrapper"
+            android:hint="@string/importe_hasta">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_importe_hasta"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
