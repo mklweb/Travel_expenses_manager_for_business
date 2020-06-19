@@ -1,6 +1,8 @@
 package com.example.appcursoandroidv2.entidades;
 
-public class Dieta {
+import java.io.Serializable;
+
+public class Dieta implements Serializable {
 
     long id;
     long fechaIni;
