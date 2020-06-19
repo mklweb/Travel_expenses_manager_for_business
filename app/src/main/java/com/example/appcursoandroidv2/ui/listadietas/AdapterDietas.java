@@ -59,7 +59,7 @@ public class AdapterDietas
         Date dateStartFecha = new Date(longStartFecha);
         Date dateEndFecha = new Date(longEndFecha);
         DateParser dpStart = new DateParser(dateStartFecha);
-        String strFecha = dpStart.getDateInTextFormat();
+        //String strFecha = dpStart.getDateInTextFormat();
         DateParser dpEnd = new DateParser(dateEndFecha);
         String strStartFecha = dpStart.getDateInTextFormat();
         String strEndFecha = dpEnd.getDateInTextFormat();
