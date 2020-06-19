@@ -8,17 +8,21 @@ public class Dieta {
     String pais;
     String ciudad;
     Double dieta;
+    String proyect;
+    String department;
 
     public Dieta() {
     }
 
-    public Dieta(long id, long fechaIni, long fechaFin, String pais, String ciudad, Double dieta) {
+    public Dieta(long id, long fechaIni, long fechaFin, String pais, String ciudad, Double dieta, String proyect, String department) {
         this.id = id;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.pais = pais;
         this.ciudad = ciudad;
         this.dieta = dieta;
+        this.proyect = proyect;
+        this.department = department;
     }
 
     public long getId() {
@@ -68,4 +72,12 @@ public class Dieta {
     public void setDieta(Double dieta) {
         this.dieta = dieta;
     }
+
+    public String getProyect() {return proyect;}
+
+    public void setProyect(String proyect) {this.proyect = proyect;}
+
+    public String getDepartment() {return department;}
+
+    public void setDepartment(String department) {this.department = department;}
 }
