@@ -84,6 +84,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "(1571011200000,'',300,0.3,16,15,40,'','CCC',''),\n" +
                     "(1578528000000,150,'','','','',80,'','CCC',''),\n" +
                     "(1595289600000,'',400,0.3,10,13,60,'','ZX','');");
+        db.execSQL(
+                ""
+        );
     }
 
     @Override
@@ -102,7 +105,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         //Se crea la nueva versión de la base de datos
         onCreate(db);
 
-        db.execSQL("INSERT INTO precio ('dieta_eu', 'dieta_resto', 'precio_km') values (60, 100, 0.3)");
     }
 
 }

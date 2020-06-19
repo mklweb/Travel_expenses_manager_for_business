@@ -125,8 +125,8 @@ public class FormularioGastoFragment extends Fragment {
         etParking.setText(String.valueOf(gasto.getParking()));
         etFood.setText(String.valueOf(gasto.getRestaurante()));
         etOther.setText(String.valueOf(gasto.getOtros()));
-        etProjectGasto.setText(String.valueOf(gasto.getPro()));
-        etDeparmentGasto.setText(String.valueOf(gasto.getDep()));
+        etProjectGasto.setText(gasto.getPro());
+        etDeparmentGasto.setText(gasto.getDep());
         etTotalGasto.setText(String.valueOf(gasto.getTotal()));
     }
 
@@ -148,7 +148,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etTransport.getText().toString();
         double transporte;
         if(!strAux.isEmpty()){
-            transporte = Double.valueOf(strAux);
+            transporte = Double.parseDouble(strAux);
         } else {
             transporte = 0;
         }
@@ -157,7 +157,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etKilometers.getText().toString();
         double kilometraje;
         if(!strAux.isEmpty()){
-            kilometraje = Double.valueOf(strAux);
+            kilometraje = Double.parseDouble(strAux);
         } else {
             kilometraje = 0;
         }
@@ -166,7 +166,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etKmPrice.getText().toString();
         double precioKm;
         if(!strAux.isEmpty()){
-            precioKm = Double.valueOf(strAux);
+            precioKm = Double.parseDouble(strAux);
         } else {
             precioKm = 0;
         }
@@ -175,7 +175,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etToll.getText().toString();
         double peaje;
         if(!strAux.isEmpty()) {
-            peaje = Double.valueOf(strAux);
+            peaje = Double.parseDouble(strAux);
         } else {
             peaje = 0;
         }
@@ -184,7 +184,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etParking.getText().toString();
         double parking;
         if(!strAux.isEmpty()) {
-            parking = Double.valueOf(strAux);
+            parking = Double.parseDouble(strAux);
         } else {
             parking = 0;
         }
@@ -193,7 +193,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etFood.getText().toString();
         double restaurante;
         if(!strAux.isEmpty()) {
-            restaurante = Double.valueOf(strAux);
+            restaurante = Double.parseDouble(strAux);
         } else {
             restaurante = 0;
         }
@@ -202,7 +202,7 @@ public class FormularioGastoFragment extends Fragment {
         strAux = etOther.getText().toString();
         double otros;
         if(!strAux.isEmpty()) {
-            otros = Double.valueOf(strAux);
+            otros = Double.parseDouble(strAux);
         } else {
             otros = 0;
         }
@@ -213,14 +213,6 @@ public class FormularioGastoFragment extends Fragment {
         //Proyecto
         strAux = etProjectGasto.getText().toString();
         gasto.setPro(strAux);
-        //Total gasto
-        strAux = etTotalGasto.getText().toString();
-        double totalGasto;
-        if(!strAux.isEmpty()) {
-            totalGasto = Double.valueOf(strAux);
-        } else {
-            totalGasto = 0;
-        }
     }
 
     public void registrar() {

@@ -2,10 +2,10 @@ package com.example.appcursoandroidv2.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appcursoandroidv2.database.Constantes;
 import com.example.appcursoandroidv2.entidades.Dieta;
-import com.example.appcursoandroidv2.entidades.Gasto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,30 +13,59 @@ import java.util.List;
 
 public class DietaDAOImpl implements DietaDAO {
 
+    SQLiteDatabase db;
+
+    /** Para SELECT sin asterisco
+     * Si se añade o elimina una columna a la tabla
+     * ponerla aquí, en getContentValues() y en getNextCursor*/
+    private static final String[] COLUMNS = {
+            Constantes.DIETA_FECHA_INI,
+            Constantes.DIETA_FECHA_FIN,
+            Constantes.DIETA_PAIS,
+            Constantes.DIETA_CIUDAD,
+            Constantes.DIETA_DIETA};
+
+    public DietaDAOImpl(SQLiteDatabase db) {
+        this.db = db;
+    }
 
     @Override
     public long add(Dieta dieta) throws Exception {
-        return 0;
+        return db.insert(Constantes.TABLA_DIETA, null, getContentValues(dieta));
     }
 
     @Override
     public int remove(String id) throws Exception {
-        return 0;
+        String[] args = new String[]{id};
+        return db.delete(Constantes.TABLA_DIETA, Constantes.DIETA_ID + "=?", args);
     }
 
     @Override
     public int modify(Dieta dieta) throws Exception {
-        return 0;
+        String[] args = new String[]{String.valueOf(dieta.getId())};
+        return db.update(Constantes.TABLA_GASTO, getContentValues(dieta), Constantes.DIETA_ID + "=?", args);
     }
 
     @Override
     public Dieta findById(long id) throws Exception {
-        return null;
+        String qry = "SELECT * FROM " + Constantes.TABLA_DIETA + " WHERE " + Constantes.DIETA_ID + "=" + id;
+        Cursor cursor = db.rawQuery(qry, null);
+        return getResultOne(cursor);
     }
 
     @Override
     public List<Dieta> findAll() throws Exception {
-        return null;
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.append("SELECT ").append(Constantes.DIETA_ID);
+        for (int i = 0, n = COLUMNS.length; i < n; i++) {
+            strBuilder.append(", ").append(COLUMNS[i]);
+        }
+        strBuilder.append(" FROM ").append(Constantes.TABLA_DIETA);
+        strBuilder.append(" ORDER BY ").append(Constantes.DIETA_FECHA_INI).append(" DESC");
+        String sql = strBuilder.toString();
+        Cursor cursor = db.rawQuery(sql, null);
+        List<Dieta> dietas = getResultList(cursor);
+        return dietas;
     }
 
     public List<Dieta> filtrarDietas(HashMap<String, String> params ) {

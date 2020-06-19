@@ -23,7 +23,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_date_gasto"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,7 +37,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,7 +50,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +63,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +76,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +89,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +102,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +115,7 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +126,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_project_gasto"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +138,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_department_gasto"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +152,8 @@
                     style="@style/InputNumber"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

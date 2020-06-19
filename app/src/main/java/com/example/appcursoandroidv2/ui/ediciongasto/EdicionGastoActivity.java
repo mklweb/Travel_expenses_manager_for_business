@@ -1,5 +1,6 @@
 package com.example.appcursoandroidv2.ui.ediciongasto;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +18,15 @@ import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
 
 public class EdicionGastoActivity extends AppCompatActivity {
 
+    private static final int SCREEN_ORIENTATION_PORTRAIT = 1;
     Button btnEnviar;
     FormularioGastoFragment fragment;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(EdicionGastoActivity.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_edicion_gasto);
 
         getControlViews();

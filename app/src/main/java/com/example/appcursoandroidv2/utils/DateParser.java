@@ -29,13 +29,17 @@ public class DateParser {
     }
 
     public String getDateTimeInTextFormat() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy H:m");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return dateFormat.format(date);
     }
 
     public String getDateInTextFormat() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(date);
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
 }

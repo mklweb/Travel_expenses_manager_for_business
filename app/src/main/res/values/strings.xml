@@ -43,4 +43,14 @@
     <string name="listado_dietas">listado_dietas</string>
     <string name="buscar_dietas">buscar_dietas</string>
 
+    <string name="et_start_date_dieta">fecha inicio</string>
+    <string name="et_end_date_dieta">fecha fin</string>
+    <string name="et_country">pais</string>
+    <string name="et_city">ciudad</string>
+    <string name="et_project_dieta">proyecto</string>
+    <string name="et_department_dieta">departamento</string>
+    <string name="tv_total_dieta">total</string>
+    <string name="et_dieta">dieta</string>
+    <string name="titulo_registro_dietas">Registro de dietas</string>
+
 </resources>

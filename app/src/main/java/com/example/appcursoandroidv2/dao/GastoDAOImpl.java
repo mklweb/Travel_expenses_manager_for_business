@@ -181,7 +181,7 @@ public class GastoDAOImpl implements GastoDAO {
     private Gasto getNextCursor(Cursor cursor, Gasto gasto) {
         gasto.setId( cursor.getLong(cursor.getColumnIndex(Constantes.GASTO_ID) ) );
         gasto.setFecha( cursor.getLong(cursor.getColumnIndex(Constantes.GASTO_FECHA) ) );
-        gasto.setTransporte( cursor.getLong(cursor.getColumnIndex(Constantes.GASTO_TRANSPORTE) ) );
+        gasto.setTransporte( cursor.getDouble(cursor.getColumnIndex(Constantes.GASTO_TRANSPORTE) ) );
         gasto.setKilometraje( cursor.getDouble(cursor.getColumnIndex(Constantes.GASTO_KILOMETRAJE) ) );
         gasto.setPrecioKm( cursor.getDouble(cursor.getColumnIndex(Constantes.GASTO_PRECIO_KM) ) );
         gasto.setPeaje( cursor.getDouble(cursor.getColumnIndex(Constantes.GASTO_PEAJE) ) );

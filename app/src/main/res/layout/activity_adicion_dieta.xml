@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.adiciongasto.AdicionGastoActivity">
+    tools:context=".ui.adiciondieta.AdicionDietaActivity">
 
     <fragment
         android:id="@+id/navegacion_superior"
@@ -14,23 +14,23 @@
         tools:layout="@layout/fragment_toolbar" />
 
     <TextView
-        android:id="@+id/tv_titulo_adicion_gastos"
+        android:id="@+id/tv_titulo_adicion_dietas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
-        android:text="@string/titulo_registro_gastos"/>
+        android:text="@string/titulo_registro_dietas"/>
 
     <fragment
-        android:id="@+id/formulario_gasto_fragment"
+        android:id="@+id/formulario_dieta_fragment"
         android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="9"
-        tools:layout="@layout/fragment_formulario_gasto" />
+        tools:layout="@layout/fragment_formulario_dieta" />
 
     <Button
-        android:id="@+id/bt_create_gasto"
+        android:id="@+id/bt_create_dieta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -44,6 +44,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_bottom_navigation" />
-
 
 </LinearLayout>
