@@ -51,7 +51,6 @@ public class AdicionGastoActivity extends AppCompatActivity {
     }
 
     private void getPrecioKm() {
-        //Conexion conn = new Conexion(this);
         SQLiteDatabase db = Conexion.getInstance(this);
         PrecioDAOImpl precioDAO = new PrecioDAOImpl(db);
         try {

@@ -175,18 +175,17 @@ public class FormularioDietaFragment extends Fragment {
         msFecha = dp.parse(strAux);
         dieta.setFechaFin(msFecha);
         //Campos texto
-        etCountry.getText().toString();
-        etCity.getText().toString();
-        etProjectDieta.getText().toString();
-        etDepartmentDieta.getText().toString();
+        dieta.setPais(etCountry.getText().toString());
+        dieta.setCiudad(etCity.getText().toString());
+        dieta.setProyect(etProjectDieta.getText().toString());
+        dieta.setDepartment(etDepartmentDieta.getText().toString());
         //Campo etDieta
         //Campo parking
         strAux = etDieta.getText().toString();
-        double dieta;
         if(!strAux.isEmpty()) {
-            dieta = Double.parseDouble(strAux);
+            dieta.setDieta(Double.parseDouble(strAux));
         } else {
-            dieta = 0;
+            dieta.setDieta((double) 0);
         }
     }
 
@@ -249,9 +248,9 @@ public class FormularioDietaFragment extends Fragment {
     private boolean validaCamposTexto() {
         boolean country = !etCountry.getText().toString().isEmpty();
         boolean city = !etCountry.getText().toString().isEmpty();
-        boolean project = !etProjectDieta.getText().toString().isEmpty();
-        boolean department = !etDepartmentDieta.getText().toString().isEmpty();
-        if(country && city && project && department) {
+        boolean proDep = !etProjectDieta.getText().toString().isEmpty() || !etDepartmentDieta.getText().toString().isEmpty();
+
+        if(country && city && proDep) {
             Toast.makeText(getContext(), "Rellene todos los campos", Toast.LENGTH_SHORT).show();
             return true;
         } else {

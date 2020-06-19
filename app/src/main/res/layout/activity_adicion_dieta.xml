@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/formulario_dieta_fragment"
-        android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
+        android:name="com.example.appcursoandroidv2.ui.fragments.FormularioDietaFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="9"
