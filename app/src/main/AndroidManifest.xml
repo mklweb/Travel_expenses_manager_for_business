@@ -17,12 +17,14 @@
         <activity android:name=".ui.adiciondieta.AdicionDietaActivity"></activity>
         <activity android:name=".ui.infoUsuario.InfoUsuarioActivity" />
         <activity android:name=".ui.listagastos.FiltroGastosActivity" />
+        <activity android:name=".ui.listadietas.FiltroDietasActivity" />
         <activity android:name=".ui.activartar.ActivarTarActivity" />
         <activity android:name=".ui.inicio.InicioActivity" />
         <activity android:name=".ui.detallegasto.DetalleGastoActivity" />
         <activity android:name=".ui.adiciongasto.AdicionGastoActivity" />
         <activity android:name=".ui.ediciongasto.EdicionGastoActivity" />
         <activity android:name=".ui.listagastos.ListaGastosActivity" />
+        <activity android:name=".ui.listadietas.ListaDietasActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

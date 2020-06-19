@@ -25,6 +25,7 @@ import com.example.appcursoandroidv2.ui.activartar.ActivarTarActivity;
 import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.infoUsuario.InfoUsuarioActivity;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
+import com.example.appcursoandroidv2.ui.listadietas.ListaDietasActivity;
 import com.example.appcursoandroidv2.ui.listagastos.FiltroGastosActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -82,7 +83,8 @@ public class ToolbarFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case R.id.list_dietas:
-                        Toast.makeText(context, "Has seleccionado LISTA DIETA", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(context, ListaDietasActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.find_dietas:
                         Toast.makeText(context, "Has seleccionado BUSQUEDA DIETA", Toast.LENGTH_SHORT).show();
