@@ -5,15 +5,21 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +31,7 @@ import com.example.appcursoandroidv2.ui.activartar.ActivarTarActivity;
 import com.example.appcursoandroidv2.ui.adiciongasto.AdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.infoUsuario.InfoUsuarioActivity;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
+import com.example.appcursoandroidv2.ui.listadietas.FiltroDietasActivity;
 import com.example.appcursoandroidv2.ui.listadietas.ListaDietasActivity;
 import com.example.appcursoandroidv2.ui.listagastos.FiltroGastosActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
@@ -36,7 +43,7 @@ import java.net.URL;
 
 
 public class ToolbarFragment extends Fragment {
-
+    View view;
     Context context;
     MaterialToolbar topAppBar;
     Usuario user;
@@ -47,20 +54,14 @@ public class ToolbarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        SQLiteDatabase db = Conexion.getInstance(getContext());
-        UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
-        try {
-            user = userDao.findByName("Patxi");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String src = user.getSrc();
-        View view = inflater.inflate(R.layout.fragment_toolbar, container, false);
-        ImageView ivFoto= view.findViewById(R.id.fotoItem);
-        LoadImage loadimage = new LoadImage(ivFoto);
-        loadimage.execute(src);
+
+        view = inflater.inflate(R.layout.fragment_toolbar, container, false);
         context = view.getContext();
         topAppBar = view.findViewById(R.id.topAppBar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(topAppBar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowCustomEnabled(true);
+        setHasOptionsMenu(true);
         topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -87,7 +88,8 @@ public class ToolbarFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case R.id.find_dietas:
-                        Toast.makeText(context, "Has seleccionado BUSQUEDA DIETA", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(context, FiltroDietasActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.activ_tarjetas:
                         intent = new Intent(context, ActivarTarActivity.class);
@@ -98,10 +100,11 @@ public class ToolbarFragment extends Fragment {
         });
         return view;
     }
+
     private class LoadImage  extends AsyncTask<String,Void, Bitmap> {
-        ImageView imageView2;
-        public LoadImage(ImageView imageView2) {
-            this.imageView2= imageView2;
+        MenuItem menuItem;
+        public LoadImage(MenuItem menuItem) {
+            this.menuItem= menuItem;
         }
         @Override
         protected Bitmap doInBackground(String... strings) {
@@ -117,7 +120,25 @@ public class ToolbarFragment extends Fragment {
         }
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            imageView2.setImageBitmap(bitmap);
+            Drawable d = new BitmapDrawable(getResources(), bitmap);
+            menuItem.setIcon(d);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.top_app_bar, menu);
+        SQLiteDatabase db = Conexion.getInstance(getContext());
+        UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
+        try {
+            user = userDao.findByName("Patxi");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String src = user.getSrc();
+        MenuItem menuItem = menu.findItem(R.id.ic_showuser);
+        LoadImage loadimage = new LoadImage(menuItem);
+        loadimage.execute(src);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

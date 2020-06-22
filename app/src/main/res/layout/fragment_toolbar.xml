@@ -22,17 +22,8 @@
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_maristak"
                 app:titleMargin="2dp"
-                >
+                />
 
-                <ImageView
-                    android:id="@+id/fotoItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp"
-
-                    android:layout_gravity="center"/>
-
-            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
