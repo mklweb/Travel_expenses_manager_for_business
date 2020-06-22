@@ -19,7 +19,7 @@ import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.dao.DietaDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Dieta;
-//import com.example.appcursoandroidv2.ui.ediciondieta.EdicionDietaActivity;
+import com.example.appcursoandroidv2.ui.ediciondieta.EdicionDietaActivity;
 import com.example.appcursoandroidv2.ui.listadietas.ListaDietasActivity;
 import com.example.appcursoandroidv2.utils.DateParser;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -137,13 +137,12 @@ public class AdapterDietas
             final String idDieta = tvIdDieta.getText().toString();
             switch (v.getId()) {
                 case R.id.btnEditar:
-                    Toast.makeText(context,"Vas editar el id: " + idDieta, Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(context, EdicionDietaActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    Dieta dieta = listDietas.get(getAdapterPosition());
-//                    bundle.putSerializable("dieta", dieta);
-//                    intent.putExtras(bundle);
-//                    context.startActivity(intent);
+                    Intent intent = new Intent(context, EdicionDietaActivity.class);
+                    Bundle bundle = new Bundle();
+                    Dieta dieta = listDietas.get(getAdapterPosition());
+                    bundle.putSerializable("dieta", dieta);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
                     break;
                 case R.id.btnBorrar:
                     MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(context);
