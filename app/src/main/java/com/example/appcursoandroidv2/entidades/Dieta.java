@@ -9,7 +9,7 @@ public class Dieta implements Serializable {
     long fechaFin;
     String pais;
     String ciudad;
-    Double dieta;
+    double dieta;
     String proyect;
     String department;
 
@@ -67,11 +67,11 @@ public class Dieta implements Serializable {
         this.ciudad = ciudad;
     }
 
-    public Double getDieta() {
+    public double getDieta() {
         return dieta;
     }
 
-    public void setDieta(Double dieta) {
+    public void setDieta(double dieta) {
         this.dieta = dieta;
     }
 
@@ -82,4 +82,17 @@ public class Dieta implements Serializable {
     public String getDepartment() {return department;}
 
     public void setDepartment(String department) {this.department = department;}
+
+    public double getTotal() {
+        long ms = getFechaFin() - getFechaIni();
+        int dias;
+        if(ms > 0) {
+            dias = (int) (ms/(1000 * 24 * 3600)) + 1;
+        } else {
+            dias = 1;
+        }
+
+        double total = dias * getDieta();
+        return total;
+    }
 }

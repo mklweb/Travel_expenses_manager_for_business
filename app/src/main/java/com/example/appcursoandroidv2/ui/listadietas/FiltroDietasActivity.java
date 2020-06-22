@@ -20,7 +20,7 @@ public class FiltroDietasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filtro_dieta);
+        setContentView(R.layout.activity_filtro_dietas);
 
         btnFitroDietasEnviar = findViewById(R.id.bt_filtro_dietas_enviar);
 

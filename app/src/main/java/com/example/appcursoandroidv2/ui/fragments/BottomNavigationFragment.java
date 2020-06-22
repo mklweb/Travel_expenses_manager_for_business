@@ -68,7 +68,6 @@ public class BottomNavigationFragment extends Fragment {
                         item.setChecked(true);
                         intent = new Intent(context, AdicionDietaActivity.class);
                         startActivity(intent);
-                        //Toast.makeText(context, "Has seleccionado DIETA", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;

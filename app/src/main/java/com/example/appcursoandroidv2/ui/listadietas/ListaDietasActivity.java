@@ -1,5 +1,6 @@
 package com.example.appcursoandroidv2.ui.listadietas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.entidades.Dieta;
+import com.example.appcursoandroidv2.ui.detalledieta.DetalleDietaActivity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,13 +48,13 @@ public class ListaDietasActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(ListaDietasActivity.this, "DIETA", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getApplicationContext(), DetalleDietaActivity.class);
-//                        // Cogemos la dieta correspondiente al item clickado y se lo pasamos en el intent
-//                        // a la activity de destino
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable("dieta", dietas.get(recyclerDietas.getChildAdapterPosition(v)));
-//                        intent.putExtras(bundle);
-                        //startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), DetalleDietaActivity.class);
+                        // Cogemos la dieta correspondiente al item clickado y se lo pasamos en el intent
+                        // a la activity de destino
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("dieta", dietas.get(recyclerDietas.getChildAdapterPosition(v)));
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
                 });
                 //Pasamos el adaptador al recycler

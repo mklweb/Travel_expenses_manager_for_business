@@ -1,50 +1,46 @@
-package com.example.appcursoandroidv2.ui.ediciongasto;
+package com.example.appcursoandroidv2.ui.ediciondieta;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.entidades.Dieta;
 import com.example.appcursoandroidv2.entidades.Gasto;
+import com.example.appcursoandroidv2.ui.ediciongasto.EdicionGastoActivity;
+import com.example.appcursoandroidv2.ui.fragments.FormularioDietaFragment;
 import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
+import com.example.appcursoandroidv2.ui.listadietas.ListaDietasActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
 
+public class EdicionDietaActivity extends AppCompatActivity {
 
-public class EdicionGastoActivity extends AppCompatActivity {
-
-    //private static final int SCREEN_ORIENTATION_PORTRAIT = 1;
     Button btnEnviar;
-    FormularioGastoFragment fragment;
+    FormularioDietaFragment fragment;
 
-    //@SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setRequestedOrientation(EdicionGastoActivity.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_edicion_gasto);
+        setContentView(R.layout.activity_edicion_dieta);
 
         getControlViews();
-
         setEventListeners();
 
-        fragment = (FormularioGastoFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_gasto_fragment);
+        fragment = (FormularioDietaFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_dieta_fragment);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            Gasto gasto = (Gasto) bundle.getSerializable("gasto");
-            fragment.setDatosToView(gasto);
+            Dieta dieta = (Dieta) bundle.getSerializable("dieta");
+            fragment.setDatosToView(dieta);
         }
-
     }
 
     private void getControlViews() {
-        btnEnviar = findViewById(R.id.bt_update_gasto);
+        btnEnviar = findViewById(R.id.bt_update_dieta);
     }
 
     private void setEventListeners() {
@@ -52,7 +48,7 @@ public class EdicionGastoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(fragment.actualizar()) {
-                    Intent intent = new Intent(EdicionGastoActivity.this, ListaGastosActivity.class);
+                    Intent intent = new Intent(EdicionDietaActivity.this, ListaDietasActivity.class);
                     startActivity(intent);
                 }
             }
@@ -64,4 +60,6 @@ public class EdicionGastoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InicioActivity.class);
         startActivity(intent);
     }
+
+
 }

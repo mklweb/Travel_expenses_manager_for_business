@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_foreground_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.adiciondieta.AdicionDietaActivity"></activity>
+        <activity android:name=".ui.detalledieta.DetalleDietaActivity" />
+        <activity android:name=".ui.ediciondieta.EdicionDietaActivity" />
+        <activity android:name=".ui.adiciondieta.AdicionDietaActivity" />
         <activity android:name=".ui.infoUsuario.InfoUsuarioActivity" />
         <activity android:name=".ui.listagastos.FiltroGastosActivity" />
         <activity android:name=".ui.listadietas.FiltroDietasActivity" />

@@ -1,5 +1,6 @@
 package com.example.appcursoandroidv2.ui.fragments;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -171,7 +172,7 @@ public class FormularioDietaFragment extends Fragment {
         long msFecha = dp.parse(strAux);
         dieta.setFechaIni(msFecha);
         //Campo etEndDate
-        strAux = etStartDate.getText().toString();
+        strAux = etEndDate.getText().toString();
         msFecha = dp.parse(strAux);
         dieta.setFechaFin(msFecha);
         //Campos texto
@@ -180,12 +181,11 @@ public class FormularioDietaFragment extends Fragment {
         dieta.setProyect(etProjectDieta.getText().toString());
         dieta.setDepartment(etDepartmentDieta.getText().toString());
         //Campo etDieta
-        //Campo parking
         strAux = etDieta.getText().toString();
         if(!strAux.isEmpty()) {
             dieta.setDieta(Double.parseDouble(strAux));
         } else {
-            dieta.setDieta((double) 0);
+            dieta.setDieta(0);
         }
     }
 
@@ -202,12 +202,15 @@ public class FormularioDietaFragment extends Fragment {
         etCountry.setText(dieta.getPais());
         etCity.setText(dieta.getCiudad());
         etDieta.setText(String.valueOf(dieta.getDieta()));
+        etProjectDieta.setText(String.valueOf(dieta.getProyect()));
+        etDepartmentDieta.setText(String.valueOf(dieta.getDepartment()));
     }
 
     private boolean validaStartDate() {
         Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
         String date = etStartDate.getText().toString();
         if(date.isEmpty()) {
+            lyStartDate.setError("Introduzca una fecha");
             return false;
         } else if(!pattern.matcher(date).matches()) {
             lyStartDate.setError("Fecha incorrecta");
@@ -251,9 +254,9 @@ public class FormularioDietaFragment extends Fragment {
         boolean proDep = !etProjectDieta.getText().toString().isEmpty() || !etDepartmentDieta.getText().toString().isEmpty();
 
         if(country && city && proDep) {
-            Toast.makeText(getContext(), "Rellene todos los campos", Toast.LENGTH_SHORT).show();
             return true;
         } else {
+            Toast.makeText(getContext(), "Rellene todos los campos", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -282,7 +285,7 @@ public class FormularioDietaFragment extends Fragment {
                 long n = dietaDAO.add(dieta);
                 db.close();
                 resetFormulario();
-                Toast.makeText(getActivity().getApplicationContext(), "Se ha creado una dieta nueva con id " + n, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Se ha creado una dieta con el id: " + n, Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }

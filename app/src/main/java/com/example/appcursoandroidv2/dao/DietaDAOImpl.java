@@ -46,7 +46,7 @@ public class DietaDAOImpl implements DietaDAO {
     @Override
     public int modify(Dieta dieta) throws Exception {
         String[] args = new String[]{String.valueOf(dieta.getId())};
-        return db.update(Constantes.TABLA_GASTO, getContentValues(dieta), Constantes.DIETA_ID + "=?", args);
+        return db.update(Constantes.TABLA_DIETA, getContentValues(dieta), Constantes.DIETA_ID + "=?", args);
     }
 
     @Override

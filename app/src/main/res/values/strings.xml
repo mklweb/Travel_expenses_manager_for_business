@@ -52,5 +52,7 @@
     <string name="tv_total_dieta">total</string>
     <string name="et_dieta">dieta</string>
     <string name="titulo_registro_dietas">Registro de dietas</string>
+    <string name="titulo_actualiza_dietas">Modificación de dietas</string>
+    <string name="titulo_detalle_dieta">Detalle de dietas</string>
 
 </resources>

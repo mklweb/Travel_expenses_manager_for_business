@@ -61,7 +61,7 @@ public class DetalleGastoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(DetalleGastoActivity.this);
-                dialogBuilder.setTitle("Diálogo prueba")
+                dialogBuilder.setTitle("Borrar gasto")
                         .setMessage("¿Seguro que quiere borrar el gasto?")
                         .setNegativeButton("no", new DialogInterface.OnClickListener() {
                             @Override
