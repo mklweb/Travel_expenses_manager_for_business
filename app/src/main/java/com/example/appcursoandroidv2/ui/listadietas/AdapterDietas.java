@@ -66,7 +66,7 @@ public class AdapterDietas
         holder.tvStartDateDieta.setText(strStartFecha);
         holder.tvEndDateDieta.setText(strEndFecha);
         holder.tvProDepDieta.setText(dieta.getDepartment() + dieta.getProyect());
-        //holder.tvTotalDieta.setText(String.valueOf(dieta.getTotal()));
+        holder.tvTotalDieta.setText(String.valueOf(dieta.getTotal()));
 
         //=== ASIGNAMOS LOS LISTENER A LOS BOTONES DEL ViewHolder ===//
         holder.asignarListeners();
