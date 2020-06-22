@@ -14,6 +14,7 @@ import com.example.appcursoandroidv2.ui.ediciondieta.EdicionDietaActivity;
 import com.example.appcursoandroidv2.ui.fragments.FormularioDietaFragment;
 import com.example.appcursoandroidv2.ui.listadietas.ListaDietasActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.hbb20.CountryCodePicker;
 
 public class DetalleDietaActivity extends AppCompatActivity {
 
@@ -45,7 +46,10 @@ public class DetalleDietaActivity extends AppCompatActivity {
         btnActualizar = findViewById(R.id.bt_update_dieta);
         findViewById(R.id.et_start_date_dieta).setFocusable(false);
         findViewById(R.id.et_end_date_dieta).setFocusable(false);
-        findViewById(R.id.et_country).setFocusable(false);
+
+        CountryCodePicker ccp = findViewById(R.id.ccp);
+        ccp.setCcpClickable(false);
+        ccp.showArrow(false);
         findViewById(R.id.et_city).setFocusable(false);
         findViewById(R.id.et_project_dieta).setFocusable(false);
         findViewById(R.id.et_department_dieta).setFocusable(false);

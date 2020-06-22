@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.dao.PrecioDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
+import com.example.appcursoandroidv2.database.Constantes;
+import com.example.appcursoandroidv2.ui.activartar.ActivarTarActivity;
 import com.example.appcursoandroidv2.ui.fragments.FormularioDietaFragment;
 import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 
@@ -40,19 +43,13 @@ public class AdicionDietaActivity extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getPrecioDieta();
                 fragment.registrar();
             }
         });
     }
 
     private void getPrecioDieta() {
-        SQLiteDatabase db = Conexion.getInstance(this);
-        PrecioDAOImpl precioDAO = new PrecioDAOImpl(db);
-        try {
-            String precioDieta = precioDAO.getDietaEu();
-            etDieta.setText(precioDieta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 }

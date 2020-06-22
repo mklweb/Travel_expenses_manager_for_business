@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appcursoandroidv2.R;
+import com.example.appcursoandroidv2.database.Constantes;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,7 +54,7 @@ public class ActivarTarActivity extends AppCompatActivity {
     final static String CARD_EUROPE = "card_europe";
     final static String CARD_INTERNATIONAL = "card_international";
     final static String CURRENT_CARD = "current_card";
-    final static String UE = "DE AT BE BG CY HR DK SK SI ES EE FI FR EL HU IE IT LV LT LU MT NL PL PT UK CZ RO SE";
+    //final static String UE = "DE AT BE BG CY HR DK SK SI ES EE FI FR EL HU IE IT LV LT LU MT NL PL PT UK CZ RO SE";
 
     double longitude, latitude;
     private boolean permisosLocation = false;
@@ -91,7 +92,7 @@ public class ActivarTarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!permisosLocation) {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
-                } else if (UE.contains(codPais) && !codPais.isEmpty()) {
+                } else if (Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS DENTRO DE LA UE", Toast.LENGTH_SHORT).show();
@@ -103,7 +104,7 @@ public class ActivarTarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!permisosLocation) {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
-                } else if (!UE.contains(codPais) && !codPais.isEmpty()) {
+                } else if (!Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS FUERA DE LA UE", Toast.LENGTH_SHORT).show();

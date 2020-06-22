@@ -17,12 +17,15 @@ import android.widget.Toast;
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.dao.DietaDAOImpl;
 import com.example.appcursoandroidv2.dao.GastoDAOImpl;
+import com.example.appcursoandroidv2.dao.PrecioDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.database.Constantes;
 import com.example.appcursoandroidv2.entidades.Dieta;
 import com.example.appcursoandroidv2.entidades.Gasto;
+import com.example.appcursoandroidv2.ui.adiciondieta.AdicionDietaActivity;
 import com.example.appcursoandroidv2.utils.DateParser;
 import com.google.android.material.textfield.TextInputLayout;
+import com.hbb20.CountryCodePicker;
 
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -32,9 +35,9 @@ public class FormularioDietaFragment extends Fragment {
 
     Dieta dieta = null;
 
-    EditText etStartDate, etEndDate, etCountry, etCity, etProjectDieta, etDepartmentDieta, etDieta;
-    TextInputLayout lyStartDate, lyEndDate, lyCountry, lyCity, lyDieta;
-
+    EditText etStartDate, etEndDate, etCity, etProjectDieta, etDepartmentDieta, etDieta;
+    TextInputLayout lyStartDate, lyEndDate, lyCity, lyDieta;
+    CountryCodePicker ccp;
     View view;
 
     public FormularioDietaFragment() {
@@ -54,15 +57,15 @@ public class FormularioDietaFragment extends Fragment {
     private void getControlViews() {
         etStartDate = view.findViewById(R.id.et_start_date_dieta);
         etEndDate = view.findViewById(R.id.et_end_date_dieta);
-        etCountry = view.findViewById(R.id.et_country);
+        ccp = (CountryCodePicker) view.findViewById(R.id.ccp);
         etCity = view.findViewById(R.id.et_city);
         etProjectDieta = view.findViewById(R.id.et_project_dieta);
         etDepartmentDieta = view.findViewById(R.id.et_department_dieta);
         etDieta = view.findViewById(R.id.et_dieta);
-
+        ccp.setCountryForNameCode("ES");
         lyStartDate = view.findViewById(R.id.ly_start_date_dieta);
         lyEndDate = view.findViewById(R.id.ly_end_date_dieta);
-        lyCountry = view.findViewById(R.id.ly_country);
+
         lyCity = view.findViewById(R.id.ly_city);
         lyDieta = view.findViewById(R.id.ly_city);
     }
@@ -154,7 +157,29 @@ public class FormularioDietaFragment extends Fragment {
                 }
             }
         });
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                String precioDieta;
+                SQLiteDatabase db = Conexion.getInstance(getContext());
+                PrecioDAOImpl precioDAO = new PrecioDAOImpl(db);
+                try {
+                    if (Constantes.UE.contains(ccp.getSelectedCountryNameCode())) {
+                        //Toast.makeText(getContext() , "EUROPA" , Toast.LENGTH_SHORT).show();
+                        precioDieta = precioDAO.getDietaEu();
+                        etDieta.setText(precioDieta);
+                    } else {
+                        //Toast.makeText(getContext() , "No EUROPA" , Toast.LENGTH_SHORT).show();
+                        precioDieta = precioDAO.getDietaRes();
+                        etDieta.setText(precioDieta);
+                    }
 
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     /** Obtine los valores de los campos y los carga en el
@@ -176,7 +201,8 @@ public class FormularioDietaFragment extends Fragment {
         msFecha = dp.parse(strAux);
         dieta.setFechaFin(msFecha);
         //Campos texto
-        dieta.setPais(etCountry.getText().toString());
+        String pais = ccp.getSelectedCountryNameCode();
+        dieta.setPais(pais);
         dieta.setCiudad(etCity.getText().toString());
         dieta.setProyect(etProjectDieta.getText().toString());
         dieta.setDepartment(etDepartmentDieta.getText().toString());
@@ -199,7 +225,8 @@ public class FormularioDietaFragment extends Fragment {
         etStartDate.setText(dp.getDateInTextFormat());
         dp.setDate(new Date(dieta.getFechaFin()));
         etEndDate.setText(dp.getDateInTextFormat());
-        etCountry.setText(dieta.getPais());
+        ccp.setCountryForNameCode(dieta.getPais());
+        //etCountry.setText(dieta.getPais());
         etCity.setText(dieta.getCiudad());
         etDieta.setText(String.valueOf(dieta.getDieta()));
         etProjectDieta.setText(String.valueOf(dieta.getProyect()));
@@ -249,23 +276,22 @@ public class FormularioDietaFragment extends Fragment {
     }
 
     private boolean validaCamposTexto() {
-        boolean country = !etCountry.getText().toString().isEmpty();
-        boolean city = !etCountry.getText().toString().isEmpty();
+        //boolean country = !etCountry.getText().toString().isEmpty();
+        boolean city = !etCity.getText().toString().isEmpty();
         boolean proDep = !etProjectDieta.getText().toString().isEmpty() || !etDepartmentDieta.getText().toString().isEmpty();
 
-        if(country && city && proDep) {
+        if( city && proDep) {
             return true;
         } else {
-            Toast.makeText(getContext(), "Rellene todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext() , "Rellene todos los campos", Toast.LENGTH_SHORT).show();
             return false;
         }
-
     }
 
     private void resetFormulario() {
         etStartDate.setText("");
         etEndDate.setText("");
-        etCountry.setText("");
+        ccp.setCountryForNameCode("ES");
         etCity.setText("");
         etProjectDieta.setText("");
         etDepartmentDieta.setText("");
@@ -283,11 +309,12 @@ public class FormularioDietaFragment extends Fragment {
             DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
             try {
                 long n = dietaDAO.add(dieta);
-                db.close();
+                Toast.makeText(getContext() , "Se ha creado una dieta con el id: " + n, Toast.LENGTH_SHORT).show();
                 resetFormulario();
-                Toast.makeText(getContext(), "Se ha creado una dieta con el id: " + n, Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();
+            }finally {
+                db.close();
             }
         }
     }
@@ -298,16 +325,16 @@ public class FormularioDietaFragment extends Fragment {
             SQLiteDatabase db = Conexion.getInstance(getActivity());
             DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
             try {
+                Toast.makeText(getContext() , "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
                 dietaDAO.modify(dieta);
-                db.close();
                 resetFormulario();
-                Toast.makeText(getActivity().getApplicationContext(), "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
+            }finally {
+                db.close();
             }
-
         } else {
             return false;
         }
@@ -317,11 +344,12 @@ public class FormularioDietaFragment extends Fragment {
         SQLiteDatabase db = Conexion.getInstance(getActivity());
         DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
         try {
-            dietaDAO.remove(String.valueOf(dieta.getId()));
-            db.close();
             Toast.makeText(getActivity().getApplicationContext(), "La dieta ha sido borrada", Toast.LENGTH_SHORT).show();
+            dietaDAO.remove(String.valueOf(dieta.getId()));
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            db.close();
         }
     }
 }
