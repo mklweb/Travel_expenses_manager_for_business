@@ -39,23 +39,25 @@
         android:id="@+id/tv_total_dieta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="24dp"
         android:textAlignment="gravity"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_recycler_start_date_dieta"
-        app:layout_constraintStart_toEndOf="@+id/tv_recycler_end_date_dieta"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditar"
         app:layout_constraintTop_toTopOf="@+id/tv_recycler_start_date_dieta"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="2000.0" />
 
     <TextView
         android:id="@+id/tv_project_deparment_dieta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="24dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnEditar"
+        app:layout_constraintStart_toEndOf="@+id/tv_recycler_end_date_dieta"
         app:layout_constraintTop_toTopOf="@+id/btnEditar"
+        app:layout_constraintVertical_bias="0.473"
         tools:text="maristak" />
 
     <ImageButton
