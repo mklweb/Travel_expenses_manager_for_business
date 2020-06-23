@@ -3,9 +3,11 @@ package com.example.appcursoandroidv2.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.appcursoandroidv2.database.Constantes;
 import com.example.appcursoandroidv2.entidades.Dieta;
+import com.example.appcursoandroidv2.utils.DateParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,7 +74,86 @@ public class DietaDAOImpl implements DietaDAO {
     }
 
     public List<Dieta> filtrarDietas(HashMap<String, String> params ) {
-        return  null;
+
+        long desdeFecha, hastaFecha;
+        double desdeImporte, hastaImporte;
+
+        DateParser dp = new DateParser();
+
+        try {
+            String fechaDesdeTxt = params.get("desde fecha");
+            desdeFecha = dp.parse(fechaDesdeTxt);
+        } catch (Exception e) {
+            desdeFecha = 0;
+        }
+        try {
+            String fechaHastaTxt = params.get("hasta fecha");
+            hastaFecha = dp.parse(fechaHastaTxt);
+        } catch (Exception e) {
+            hastaFecha = 0;
+        }
+        try {
+            desdeImporte = Double.parseDouble(params.get("desde importe"));
+        } catch (Exception e) {
+            desdeImporte = 0;
+        }
+        try{
+            hastaImporte = Double.parseDouble(params.get("hasta importe"));
+        } catch (Exception e) {
+            hastaImporte = 0;
+        }
+
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.append("SELECT ").append(Constantes.DIETA_ID);
+        for (int i = 0, n = COLUMNS.length; i < n; i++) {
+            strBuilder.append(", ").append(COLUMNS[i]);
+        }
+        strBuilder.append(" FROM ").append(Constantes.TABLA_DIETA);
+        strBuilder.append(" WHERE 1=1");
+        if(desdeFecha > 0) {
+            /** AND (fecha_ini >= desdeFecha OR fecha_fin >= desdeFecha) */;
+            strBuilder.append(" AND (")
+                    .append(Constantes.DIETA_FECHA_INI)
+                    .append(" >= ")
+                    .append(desdeFecha)
+                    .append(" OR ")
+                    .append(Constantes.DIETA_FECHA_FIN)
+                    .append(" >= ")
+                    .append(desdeFecha)
+                    .append(")");
+        }
+        if(hastaFecha > 0) {
+            /** AND (fecha_ini <= hastaFecha OR fecha_fin <= hastaFecha) */
+            strBuilder.append(" AND (")
+                    .append(Constantes.DIETA_FECHA_INI)
+                    .append(" <= ")
+                    .append(hastaFecha)
+                    .append(" OR ")
+                    .append(Constantes.DIETA_FECHA_FIN)
+                    .append(" <= ")
+                    .append(hastaFecha)
+                    .append(")");
+        }
+        if(desdeImporte > 0) {
+            /** AND desdeImporte <= totalDieta */
+            strBuilder.append(" AND ")
+                    .append(desdeImporte)
+                    .append(" <= ")
+                    .append("((fecha_fin - fecha_ini) + 24 * 3600 * 1000) / (24 * 3600 * 1000) * dieta");
+        }
+        if(hastaImporte > 0) {
+            /** AND totalDieta <= hastaImporte */
+            strBuilder.append(" AND ")
+                    .append(hastaImporte)
+                    .append(" >= ")
+                    .append("((fecha_fin - fecha_ini) + 24 * 3600 * 1000) / (24 * 3600 * 1000) * dieta");
+        }
+        strBuilder.append(" ORDER BY ").append(Constantes.DIETA_FECHA_INI).append(" ASC");
+        String sql = strBuilder.toString();
+        Log.d("sql => ", sql);
+        Cursor cursor = db.rawQuery(sql, null);
+        List<Dieta> dietas = getResultList(cursor);
+        return dietas;
     }
 
     private ContentValues getContentValues(Dieta dieta) {

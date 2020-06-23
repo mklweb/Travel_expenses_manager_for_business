@@ -76,7 +76,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 + Constantes.USUARIO_SRC + ","
                 + Constantes.USUARIO_LAST_CONNECTION + ","
                 + Constantes.USUARIO_CURRENT_CONNECTION
-                + ") values(1, '12345678N', 'Patxi', '1', '1', 'https://mikelweb.ml/img/foto_freddieXL.png'," + (new Date().getTime() - 86400000) + "," + new Date().getTime() + ")");
+                + ") values(1, '12345678N', 'Patxi', '1', '1', 'https://mikelweb.ml/img/foto_freddieXL.png'," + (new Date().getTime() - 86400000) + "," + new Date().getTime() + ")"
+        );
         db.execSQL(
                 "INSERT INTO gasto (fecha,transporte, kilometraje, precio_km, peaje, parking, restaurante, otros, pro, dep)\n" +
                 "VALUES \n" +
@@ -85,7 +86,19 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                     "(1559520000000,200,'','',16,15,40,'','CCC',''),\n" +
                     "(1571011200000,'',300,0.3,16,15,40,'','CCC',''),\n" +
                     "(1578528000000,150,'','','','',80,'','CCC',''),\n" +
-                    "(1595289600000,'',400,0.3,10,13,60,'','ZX','');");
+                    "(1595289600000,'',400,0.3,10,13,60,'','ZX','');"
+        );
+        db.execSQL(
+                "INSERT INTO dieta (fecha_ini, fecha_fin, pais, ciudad, pro, dep, dieta)\n" +
+                        "VALUES\n" +
+                        "(1546300800000, 1546473600000, 'ES', 'Madrid', 'ACB', '', 60),\n" +
+                        "(1552435200000, 1552867200000, 'ES', 'Avilés', 'BB', '', 60),\n" +
+                        "(1556064000000, 1556668800000, 'PT', 'Lisboa','', 'COM', 60 ),\n" +
+                        "(1557360000000, 1559952000000, 'ES', 'Reinosa', 'DD', '', 60),\n" +
+                        "(1560556800000, 1560729600000, 'FR', 'París', 'EE', '', 60),\n" +
+                        "(1562544000000, 1562544000000, 'UK', 'Londres', '', 'ADM', 60),\n" +
+                        "(1569110400000, 1569801600000, 'MX', 'Ciudad de México', 'XY', '', 60);"
+        );
     }
 
     @Override
