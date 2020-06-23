@@ -54,5 +54,6 @@
     <string name="titulo_registro_dietas">Registro de dietas</string>
     <string name="titulo_actualiza_dietas">Modificación de dietas</string>
     <string name="titulo_detalle_dieta">Detalle de dietas</string>
+    <string name="et_total_dieta">Total</string>
 
 </resources>

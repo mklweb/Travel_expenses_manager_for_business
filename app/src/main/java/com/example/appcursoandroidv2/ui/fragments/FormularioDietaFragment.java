@@ -22,6 +22,7 @@ import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.database.Constantes;
 import com.example.appcursoandroidv2.entidades.Dieta;
 import com.example.appcursoandroidv2.entidades.Gasto;
+import com.example.appcursoandroidv2.entidades.Precio;
 import com.example.appcursoandroidv2.ui.adiciondieta.AdicionDietaActivity;
 import com.example.appcursoandroidv2.utils.DateParser;
 import com.google.android.material.textfield.TextInputLayout;
@@ -34,8 +35,8 @@ import java.util.regex.Pattern;
 public class FormularioDietaFragment extends Fragment {
 
     Dieta dieta = null;
-
-    EditText etStartDate, etEndDate, etCity, etProjectDieta, etDepartmentDieta, etDieta;
+    String strAux;
+    EditText etStartDate, etEndDate, etCity, etProjectDieta, etDepartmentDieta, etDieta, etTotal;
     TextInputLayout lyStartDate, lyEndDate, lyCity, lyDieta;
     CountryCodePicker ccp;
     View view;
@@ -58,14 +59,14 @@ public class FormularioDietaFragment extends Fragment {
         etStartDate = view.findViewById(R.id.et_start_date_dieta);
         etEndDate = view.findViewById(R.id.et_end_date_dieta);
         ccp = (CountryCodePicker) view.findViewById(R.id.ccp);
+        ccp.setCountryForNameCode("ES");
         etCity = view.findViewById(R.id.et_city);
         etProjectDieta = view.findViewById(R.id.et_project_dieta);
         etDepartmentDieta = view.findViewById(R.id.et_department_dieta);
         etDieta = view.findViewById(R.id.et_dieta);
-        ccp.setCountryForNameCode("ES");
+        etTotal = view.findViewById(R.id.et_total_dieta);
         lyStartDate = view.findViewById(R.id.ly_start_date_dieta);
         lyEndDate = view.findViewById(R.id.ly_end_date_dieta);
-
         lyCity = view.findViewById(R.id.ly_city);
         lyDieta = view.findViewById(R.id.ly_city);
     }
@@ -87,14 +88,14 @@ public class FormularioDietaFragment extends Fragment {
                 }
             }
         });
-        etDieta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    validaDieta();
-                }
-            }
-        });
+//        etDieta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(!hasFocus) {
+//                    validaDieta();
+//                }
+//            }
+//        });
         etStartDate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -139,24 +140,24 @@ public class FormularioDietaFragment extends Fragment {
                 }
             }
         });
-        etDieta.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(Double.parseDouble(etDieta.getText().toString()) > 0) {
-                    lyDieta.setError(null);
-                }
-            }
-        });
+//        etDieta.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                if(Double.parseDouble(etDieta.getText().toString()) > 0) {
+//                    lyDieta.setError(null);
+//                }
+//            }
+//        });
         ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
@@ -168,10 +169,20 @@ public class FormularioDietaFragment extends Fragment {
                         //Toast.makeText(getContext() , "EUROPA" , Toast.LENGTH_SHORT).show();
                         precioDieta = precioDAO.getDietaEu();
                         etDieta.setText(precioDieta);
+                        strAux = etDieta.getText().toString();
+                        dieta.setDieta(Double.parseDouble(strAux));
+                        if(validaStartDate() && validaEndDate()){
+                            etTotal.setText(String.valueOf(dieta.getTotal()));
+                        }
                     } else {
                         //Toast.makeText(getContext() , "No EUROPA" , Toast.LENGTH_SHORT).show();
                         precioDieta = precioDAO.getDietaRes();
                         etDieta.setText(precioDieta);
+                        strAux = etDieta.getText().toString();
+                        dieta.setDieta(Double.parseDouble(strAux));
+                        if(validaStartDate() && validaEndDate()){
+                            etTotal.setText(String.valueOf(dieta.getTotal()));
+                        }
                     }
 
 
@@ -191,7 +202,7 @@ public class FormularioDietaFragment extends Fragment {
             dieta = new Dieta();
         }
         //Campo etSartDate
-        String strAux;
+
         DateParser dp = new DateParser();
         strAux = etStartDate.getText().toString();
         long msFecha = dp.parse(strAux);
@@ -231,6 +242,7 @@ public class FormularioDietaFragment extends Fragment {
         etDieta.setText(String.valueOf(dieta.getDieta()));
         etProjectDieta.setText(String.valueOf(dieta.getProyect()));
         etDepartmentDieta.setText(String.valueOf(dieta.getDepartment()));
+        etTotal.setText(String.valueOf(dieta.getTotal()));
     }
 
     private boolean validaStartDate() {
@@ -262,18 +274,18 @@ public class FormularioDietaFragment extends Fragment {
         }
     }
 
-    private boolean validaDieta() {
-        String value = etDieta.getText().toString();
-        if(value.isEmpty()) {
-            lyDieta.setError("Introduzca un importe en Dieta");
-            return false;
-        } else if(Double.parseDouble(value) > 0 ) {
-            return true;
-        } else {
-            lyDieta.setError("Introduzca un importe en Dieta");
-            return false;
-        }
-    }
+//    private boolean validaDieta() {
+//        String value = etDieta.getText().toString();
+//        if(value.isEmpty()) {
+//            lyDieta.setError("Introduzca un importe en Dieta");
+//            return false;
+//        } else if(Double.parseDouble(value) > 0 ) {
+//            return true;
+//        } else {
+//            lyDieta.setError("Introduzca un importe en Dieta");
+//            return false;
+//        }
+//    }QUITADO TAMBIEN DE LAS COMPROBACIONES DE ABAJO
 
     private boolean validaCamposTexto() {
         //boolean country = !etCountry.getText().toString().isEmpty();
@@ -296,6 +308,7 @@ public class FormularioDietaFragment extends Fragment {
         etProjectDieta.setText("");
         etDepartmentDieta.setText("");
         etDieta.setText("");
+        etTotal.setText("");
     }
 
     public Dieta getDieta() {
@@ -303,7 +316,7 @@ public class FormularioDietaFragment extends Fragment {
     }
 
     public void registrar() {
-        if(validaStartDate() && validaEndDate() && validaDieta() && validaCamposTexto()) {
+        if(validaStartDate() && validaEndDate() && validaCamposTexto()) {
             getDatosFromView();
             SQLiteDatabase db = Conexion.getInstance(getActivity());
             DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
@@ -320,7 +333,7 @@ public class FormularioDietaFragment extends Fragment {
     }
 
     public boolean actualizar() {
-        if(validaStartDate() && validaEndDate() && validaDieta() && validaCamposTexto()) {
+        if(validaStartDate() && validaEndDate() && validaCamposTexto()) {
             getDatosFromView();
             SQLiteDatabase db = Conexion.getInstance(getActivity());
             DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
