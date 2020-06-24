@@ -84,7 +84,11 @@ public class FormularioDietaFragment extends Fragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus) {
-                    validaEndDate();
+                    if(validaEndDate()) {
+                        if(!validaDias()) {
+                            lyEndDate.setError("El mínimo de días para el cobro de dietas es 5");
+                        }
+                    };
                 }
             }
         });
@@ -184,8 +188,6 @@ public class FormularioDietaFragment extends Fragment {
                             etTotal.setText(String.valueOf(dieta.getTotal()));
                         }
                     }
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -297,6 +299,20 @@ public class FormularioDietaFragment extends Fragment {
         } else {
             Toast.makeText(getContext() , "Rellene todos los campos", Toast.LENGTH_SHORT).show();
             return false;
+        }
+    }
+
+    private boolean validaDias() {
+        String strStartDate = etStartDate.getText().toString();
+        String strEndDate = etEndDate.getText().toString();
+        DateParser dp = new DateParser();
+        long startDate = dp.parse(strStartDate);
+        long endDate = dp.parse(strEndDate);
+        long ms = endDate - startDate;
+        if(ms > 0) {
+            return  (int) ms/(24 * 3600 * 1000) + 1 > 4;
+        } else {
+            return  false;
         }
     }
 
