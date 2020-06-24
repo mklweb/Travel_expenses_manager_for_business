@@ -40,7 +40,7 @@ public class FormularioDietaFragment extends Fragment {
     TextInputLayout lyStartDate, lyEndDate, lyCity, lyDieta;
     CountryCodePicker ccp;
     View view;
-
+    String paisInicial;
     public FormularioDietaFragment() {
         // Required empty public constructor
     }
@@ -49,9 +49,17 @@ public class FormularioDietaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.fragment_formulario_dieta, container, false);
         getControlViews();
         setEventListeners();
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+            paisInicial = savedInstanceState.getString("paisInicio");
+            ccp.setCountryForNameCode(paisInicial);
+        } else {
+            ccp.setCountryForNameCode("ES");
+        }
         return view;
     }
 
@@ -380,5 +388,12 @@ public class FormularioDietaFragment extends Fragment {
         }finally {
             db.close();
         }
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        savedInstanceState.putString("paisInicio", ccp.getSelectedCountryNameCode());
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
