@@ -94,7 +94,11 @@ public class FormularioDietaFragment extends Fragment {
                 if(!hasFocus) {
                     if(validaEndDate()) {
                         if(!validaDias()) {
+                            lyEndDate.setErrorEnabled(true);
                             lyEndDate.setError("El mínimo de días para el cobro de dietas es 5");
+                        } else {
+                            lyEndDate.setError(null);
+                            lyEndDate.setErrorEnabled(false);
                         }
                     };
                 }
@@ -127,6 +131,7 @@ public class FormularioDietaFragment extends Fragment {
                 Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
                 if(pattern.matcher(etStartDate.getText().toString()).matches()) {
                     lyStartDate.setError(null);
+                    lyStartDate.setErrorEnabled(false);
                 }
             }
         });
@@ -149,6 +154,7 @@ public class FormularioDietaFragment extends Fragment {
                 Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
                 if(pattern.matcher(etEndDate.getText().toString()).matches()) {
                     lyEndDate.setError(null);
+                    lyStartDate.setErrorEnabled(false);
                 }
             }
         });
@@ -259,13 +265,16 @@ public class FormularioDietaFragment extends Fragment {
         Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
         String date = etStartDate.getText().toString();
         if(date.isEmpty()) {
+            lyStartDate.setErrorEnabled(true);
             lyStartDate.setError("Introduzca una fecha");
             return false;
         } else if(!pattern.matcher(date).matches()) {
+            lyStartDate.setErrorEnabled(true);
             lyStartDate.setError("Fecha incorrecta");
             return false;
         } else {
             lyStartDate.setError(null);
+            lyStartDate.setErrorEnabled(false);
             return true;
         }
     }
@@ -276,6 +285,7 @@ public class FormularioDietaFragment extends Fragment {
         if(date.isEmpty()) {
             return false;
         } else if(!pattern.matcher(date).matches()) {
+            lyStartDate.setErrorEnabled(true);
             lyEndDate.setError("Fecha incorrecta");
             return false;
         } else {

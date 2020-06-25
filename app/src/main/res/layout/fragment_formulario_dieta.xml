@@ -108,9 +108,18 @@
                     android:id="@+id/et_total_dieta"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:inputType="numberDecimal"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/bt_enviar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="enviar"
+                style="@style/Widget.MaterialComponents.Button" />
         </LinearLayout>
 
     </ScrollView>

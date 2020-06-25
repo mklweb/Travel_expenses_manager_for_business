@@ -40,7 +40,7 @@ public class EdicionDietaActivity extends AppCompatActivity {
     }
 
     private void getControlViews() {
-        btnEnviar = findViewById(R.id.bt_update_dieta);
+        btnEnviar = findViewById(R.id.bt_enviar);
     }
 
     private void setEventListeners() {

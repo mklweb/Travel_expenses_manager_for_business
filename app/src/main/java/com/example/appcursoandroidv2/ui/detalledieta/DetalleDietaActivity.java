@@ -54,6 +54,7 @@ public class DetalleDietaActivity extends AppCompatActivity {
         findViewById(R.id.et_project_dieta).setFocusable(false);
         findViewById(R.id.et_department_dieta).setFocusable(false);
         findViewById(R.id.et_dieta).setFocusable(false);
+        findViewById(R.id.bt_enviar).setVisibility(View.GONE);
     }
 
     private void setEventListeners() {
