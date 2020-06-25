@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.ui.detallegasto.DetalleGastoActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,12 +24,13 @@ public class ListaGastosActivity extends AppCompatActivity {
     RecyclerView recyclerGastos;
     RecyclerView.LayoutManager layoutManager;
     AdapterGastos adapterGastos;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_gastos);
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Listado de gastos");
         recyclerGastos = findViewById(R.id.recycler_gastos);
         layoutManager = new LinearLayoutManager(this);
         recyclerGastos.setLayoutManager(layoutManager);

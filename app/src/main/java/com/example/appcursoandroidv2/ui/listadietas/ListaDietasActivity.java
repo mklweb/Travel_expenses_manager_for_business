@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.entidades.Dieta;
 import com.example.appcursoandroidv2.ui.detalledieta.DetalleDietaActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,12 +24,13 @@ public class ListaDietasActivity extends AppCompatActivity {
     RecyclerView recyclerDietas;
     RecyclerView.LayoutManager layoutManager;
     AdapterDietas adapterDietas;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_dietas);
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Listado de dietas");
         recyclerDietas = findViewById(R.id.recycler_dieta);
         layoutManager = new LinearLayoutManager(this);
         recyclerDietas.setLayoutManager(layoutManager);

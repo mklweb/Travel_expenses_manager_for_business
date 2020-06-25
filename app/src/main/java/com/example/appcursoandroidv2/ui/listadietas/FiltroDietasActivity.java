@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.ui.fragments.FiltroFragment;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.HashMap;
 
@@ -16,12 +17,13 @@ public class FiltroDietasActivity extends AppCompatActivity {
 
     Button btnFitroDietasEnviar;
     FiltroFragment fragment;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtro_dietas);
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Consulta de dietas");
         btnFitroDietasEnviar = findViewById(R.id.bt_filtro_dietas_enviar);
 
         fragment = (FiltroFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_filtro);

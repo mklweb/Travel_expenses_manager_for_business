@@ -28,6 +28,7 @@ import com.example.appcursoandroidv2.database.Constantes;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +47,7 @@ public class ActivarTarActivity extends AppCompatActivity {
     TextView tvLastActiveEur, tvLastActiveInt, tvCardEurope, tvCardInternational, tvCurrentCard;
     ImageView ivTarjetaEurope, ivTarjetaInternational;
     String statusCode;
-
+    MaterialToolbar toolbar;
     Map<String, String> records;
 
     final static String LAST_ACTIVE_EUR = "lastactive_eur";
@@ -76,6 +77,8 @@ public class ActivarTarActivity extends AppCompatActivity {
         obtenerCoordenadas();
 
         sendHttpRequest("http://10.0.2.2:4000/infocards/user1");
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Gestión de tarjetas");
     }
 
     private void getControlViews() {

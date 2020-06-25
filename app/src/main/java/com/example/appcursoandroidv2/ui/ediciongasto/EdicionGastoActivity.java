@@ -14,6 +14,7 @@ import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 
 public class EdicionGastoActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class EdicionGastoActivity extends AppCompatActivity {
     //private static final int SCREEN_ORIENTATION_PORTRAIT = 1;
     Button btnEnviar;
     FormularioGastoFragment fragment;
-
+    MaterialToolbar toolbar;
     //@SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,8 @@ public class EdicionGastoActivity extends AppCompatActivity {
             Gasto gasto = (Gasto) bundle.getSerializable("gasto");
             fragment.setDatosToView(gasto);
         }
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Editar gasto");
     }
 
     private void getControlViews() {

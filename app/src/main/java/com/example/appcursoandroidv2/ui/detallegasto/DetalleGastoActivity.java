@@ -14,13 +14,14 @@ import com.example.appcursoandroidv2.entidades.Gasto;
 import com.example.appcursoandroidv2.ui.ediciongasto.EdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class DetalleGastoActivity extends AppCompatActivity {
 
     Button btnBorrar, btnActualizar;
     FormularioGastoFragment fragment;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,8 @@ public class DetalleGastoActivity extends AppCompatActivity {
             Gasto gasto = (Gasto) bundle.getSerializable("gasto");
             fragment.setDatosToView(gasto);
         }
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Detalle de gasto");
     }
 
     private void getControlViews() {

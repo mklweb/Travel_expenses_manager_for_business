@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.appcursoandroidv2.R;
 import com.example.appcursoandroidv2.ui.ediciongasto.EdicionGastoActivity;
 import com.example.appcursoandroidv2.ui.fragments.FiltroFragment;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,12 +19,13 @@ public class FiltroGastosActivity extends AppCompatActivity {
 
     Button btnFitroGastosEnviar;
     FiltroFragment fragment;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtro_gastos);
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Consulta de gastos");
         btnFitroGastosEnviar = findViewById(R.id.bt_filtro_gastos_enviar);
 
         fragment = (FiltroFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_filtro);

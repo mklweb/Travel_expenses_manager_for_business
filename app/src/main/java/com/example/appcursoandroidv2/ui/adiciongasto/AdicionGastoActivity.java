@@ -14,13 +14,14 @@ import com.example.appcursoandroidv2.dao.PrecioDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class AdicionGastoActivity extends AppCompatActivity {
 
     Button btnEnviar;
     EditText etPrecioKm;
     FormularioGastoFragment fragment;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,8 @@ public class AdicionGastoActivity extends AppCompatActivity {
         getPrecioKm();
 
         fragment = (FormularioGastoFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_gasto_fragment);
-
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Nuevo gasto");
     }
 
     private void getControlViews() {

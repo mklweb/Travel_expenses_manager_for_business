@@ -20,6 +20,7 @@ import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Usuario;
 import com.example.appcursoandroidv2.ui.vm.UsuarioViewModel;
 import com.example.appcursoandroidv2.utils.DateParser;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Date;
 
@@ -31,6 +32,7 @@ public class InfoUsuarioActivity extends AppCompatActivity {
     TextView tvLastConection;
     NetworkImageView avatar;
     String strFecha;
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class InfoUsuarioActivity extends AppCompatActivity {
         tvUserName= findViewById(R.id.tv_username);
         tvDni= findViewById(R.id.tv_dni);
         tvLastConection= findViewById(R.id.tv_last_conection);
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Info del usuario");
         avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
         UsuarioViewModel model = new ViewModelProvider(this).get(UsuarioViewModel.class);
         SQLiteDatabase db = Conexion.getInstance(InfoUsuarioActivity.this);

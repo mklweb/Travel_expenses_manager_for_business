@@ -13,15 +13,18 @@ import com.example.appcursoandroidv2.dao.UsuarioDAOImpl;
 import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.entidades.Usuario;
 import com.example.appcursoandroidv2.ui.vm.UsuarioViewModel;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class InicioActivity extends AppCompatActivity {
     Usuario user;
     TextView tvWelcome;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Inicio");
         SQLiteDatabase db = Conexion.getInstance(InicioActivity.this);
         UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
         try {

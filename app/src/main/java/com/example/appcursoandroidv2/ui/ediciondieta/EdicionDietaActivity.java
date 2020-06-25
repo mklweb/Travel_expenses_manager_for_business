@@ -16,12 +16,13 @@ import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.example.appcursoandroidv2.ui.listadietas.ListaDietasActivity;
 import com.example.appcursoandroidv2.ui.listagastos.ListaGastosActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class EdicionDietaActivity extends AppCompatActivity {
 
     Button btnEnviar;
     FormularioDietaFragment fragment;
-
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,8 @@ public class EdicionDietaActivity extends AppCompatActivity {
             Dieta dieta = (Dieta) bundle.getSerializable("dieta");
             fragment.setDatosToView(dieta);
         }
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle("Editar dieta");
     }
 
     private void getControlViews() {

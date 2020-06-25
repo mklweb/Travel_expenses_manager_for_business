@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("Autenticación");
+
     }
     public boolean isNombreValid(){
         return !TextUtils.isEmpty(login.getNombre());
