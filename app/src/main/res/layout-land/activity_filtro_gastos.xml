@@ -10,22 +10,11 @@
         android:id="@+id/navegacion_superior"
         android:name="com.example.appcursoandroidv2.ui.fragments.ToolbarFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_toolbar" />
-
-    <TextView
-        android:id="@+id/titulo_filtro_gastos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Filtro de gastos"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navegacion_superior" />
 
 
     <fragment
@@ -37,13 +26,14 @@
         android:layout_weight="9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_filtro_gastos"
+        app:layout_constraintTop_toBottomOf="@+id/navegacion_superior"
         tools:layout="@layout/fragment_filtro" />
 
     <Button
         android:id="@+id/bt_filtro_gastos_enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/enviar"
         app:layout_constraintBottom_toTopOf="@+id/navegacion_navegacion_inferior"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,7 +10,7 @@
         android:id="@+id/navegacion_superior"
         android:name="com.example.appcursoandroidv2.ui.fragments.ToolbarFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         tools:layout="@layout/fragment_toolbar" />
 
     <fragment

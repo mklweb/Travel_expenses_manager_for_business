@@ -10,24 +10,8 @@
         android:id="@+id/navegacion_superior"
         android:name="com.example.appcursoandroidv2.ui.fragments.ToolbarFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         tools:layout="@layout/fragment_toolbar" />
-
-    <TextView
-        android:id="@+id/tv_titulo_adicion_gastos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:text="@string/titulo_registro_gastos"/>
-
-    <fragment
-        android:id="@+id/formulario_gasto_fragment"
-        android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9"
-        tools:layout="@layout/fragment_formulario_gasto" />
 
     <!--
     <Button
@@ -40,6 +24,14 @@
         android:layout_marginBottom="10dp"
         style="@style/Widget.MaterialComponents.Button" />
         -->
+
+    <fragment
+        android:id="@+id/formulario_gasto_fragment"
+        android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        tools:layout="@layout/fragment_formulario_gasto" />
 
     <fragment android:name="com.example.appcursoandroidv2.ui.fragments.BottomNavigationFragment"
         android:id="@+id/navegacion_navegacion_inferior"
