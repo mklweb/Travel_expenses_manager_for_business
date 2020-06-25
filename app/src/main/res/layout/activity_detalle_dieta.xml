@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_toolbar" />
 
+    <!--
     <TextView
         android:id="@+id/tv_titulo_detalle_dieta"
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:text="@string/titulo_detalle_dieta"/>
+        -->
 
     <fragment
         android:id="@+id/formulario_dieta_fragment"
