@@ -56,6 +56,7 @@ public class DetalleGastoActivity extends AppCompatActivity {
         findViewById(R.id.et_project_gasto).setFocusable(false);
         findViewById(R.id.et_department_gasto).setFocusable(false);
         findViewById(R.id.et_total_gasto).setFocusable(false);
+        findViewById(R.id.bt_enviar).setVisibility(View.GONE);
     }
 
     private void setEventListeners() {

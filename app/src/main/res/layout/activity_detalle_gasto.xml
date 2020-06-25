@@ -13,14 +13,6 @@
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_toolbar" />
 
-    <TextView
-        android:id="@+id/tv_titulo_detalle_gasto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:text="@string/titulo_detalle_gasto"/>
-
     <fragment
         android:id="@+id/formulario_gasto_fragment"
         android:name="com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment"
