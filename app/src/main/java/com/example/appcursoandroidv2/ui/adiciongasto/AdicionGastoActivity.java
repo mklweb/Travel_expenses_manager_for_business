@@ -39,7 +39,7 @@ public class AdicionGastoActivity extends AppCompatActivity {
     }
 
     private void getControlViews() {
-       btnEnviar = findViewById(R.id.bt_create_gasto);
+       btnEnviar = findViewById(R.id.bt_enviar);
        etPrecioKm = findViewById(R.id.et_km_price);
     }
 
