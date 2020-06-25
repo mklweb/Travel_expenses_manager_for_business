@@ -23,7 +23,7 @@ public class FiltroDietasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtro_dietas);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Consulta de dietas");
+        toolbar.setTitle(R.string.buscar_dietas);
         btnFitroDietasEnviar = findViewById(R.id.bt_filtro_dietas_enviar);
 
         fragment = (FiltroFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_filtro);

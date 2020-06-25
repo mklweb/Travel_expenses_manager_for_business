@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">App Curso Android V2</string>
-    <string name="titulo_detalle_gasto">Detalle de gasto</string>
+    <string name="app_name">App Curso Android</string>
+    <string name="titulo_detalle_gasto">Detalle gasto</string>
     <string name="action_settings">Settings</string>
-    <string name="titulo_actualiza_gastos">Modificación del gasto</string>
-    <string name="titulo_registro_gastos">Registro de gastos</string>
+    <string name="titulo_actualiza_gastos">Editar gasto</string>
+    <string name="titulo_registro_gastos">Registro gasto</string>
     <string name="fecha">fecha:dd/mm/aaaa</string>
     <string name="medio_transporte">medio transporte</string>
     <string name="kilometraje">kilometraje</string>
@@ -17,16 +17,14 @@
     <string name="total">total</string>
     <string name="borrar">borrar</string>
     <string name="actualizar">actualizar</string>
-    <string name="page_title">MARISTAK</string>
     <string name="nuevo_gasto">Nuevo gasto</string>
     <string name="nueva_dieta">Nueva dieta</string>
-    <string name="listado_gastos">Lista gastos</string>
-    <string name="inicio">inicio</string>
+    <string name="listado_gastos">Listado gastos</string>
+    <string name="inicio">Inicio</string>
     <string name="activar_europea">activar europea</string>
     <string name="activar_internacional">activar internacional</string>
     <string name="info_tarjetas">información tarjetas</string>
-    <string name="activar_tarjeta">activar tarjeta</string>
-
+    <string name="activar_tarjeta">Gestión tarjetas</string>
     <string name="enviar">Enviar</string>
     <string name="nombre_usuario">Nombre de usuario</string>
     <string name="contraseña">Contraseña</string>
@@ -34,15 +32,13 @@
     <string name="intro_texto">Aplicación de gestión de gastos de viaje de</string>
     <string name="maristak">Maristak</string>
     <string name="editar">editar</string>
-    <string name="buscar_gastos">buscar gastos</string>
-
+    <string name="buscar_gastos">Consulta gastos</string>
     <string name="fecha_desde">desde fecha:dd/mm/aaaa</string>
     <string name="fecha_hasta">hasta fecha:dd/mm/aaaa</string>
     <string name="importe_desde">desde importe</string>
     <string name="importe_hasta">hasta importe</string>
-    <string name="listado_dietas">listado_dietas</string>
-    <string name="buscar_dietas">buscar_dietas</string>
-
+    <string name="listado_dietas">Listado dietas</string>
+    <string name="buscar_dietas">Consulta dietas</string>
     <string name="et_start_date_dieta">fecha inicio</string>
     <string name="et_end_date_dieta">fecha fin</string>
     <string name="et_country">pais</string>
@@ -51,9 +47,11 @@
     <string name="et_department_dieta">departamento</string>
     <string name="tv_total_dieta">total</string>
     <string name="et_dieta">dieta</string>
-    <string name="titulo_registro_dietas">Registro de dietas</string>
-    <string name="titulo_actualiza_dietas">Modificación de dietas</string>
-    <string name="titulo_detalle_dieta">Detalle de dietas</string>
+    <string name="titulo_registro_dietas">Registro dieta</string>
+    <string name="titulo_actualiza_dietas">Editar dieta</string>
+    <string name="titulo_detalle_dieta">Detalle dieta</string>
     <string name="et_total_dieta">Total</string>
+    <string name="info_usuario">Info usuario</string>
+
 
 </resources>

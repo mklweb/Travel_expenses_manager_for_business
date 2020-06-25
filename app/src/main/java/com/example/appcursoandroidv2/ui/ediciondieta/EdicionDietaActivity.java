@@ -39,7 +39,7 @@ public class EdicionDietaActivity extends AppCompatActivity {
             fragment.setDatosToView(dieta);
         }
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Editar dieta");
+        toolbar.setTitle(R.string.titulo_actualiza_dietas);
     }
 
     private void getControlViews() {

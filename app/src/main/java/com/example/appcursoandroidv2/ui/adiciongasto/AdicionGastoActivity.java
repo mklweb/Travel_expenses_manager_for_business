@@ -35,7 +35,7 @@ public class AdicionGastoActivity extends AppCompatActivity {
 
         fragment = (FormularioGastoFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_gasto_fragment);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Nuevo gasto");
+        toolbar.setTitle(R.string.nuevo_gasto);
     }
 
     private void getControlViews() {

@@ -42,7 +42,7 @@ public class EdicionGastoActivity extends AppCompatActivity {
             fragment.setDatosToView(gasto);
         }
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Editar gasto");
+        toolbar.setTitle(R.string.titulo_actualiza_gastos);
     }
 
     private void getControlViews() {

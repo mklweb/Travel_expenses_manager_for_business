@@ -30,7 +30,7 @@ public class ListaGastosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_gastos);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Listado de gastos");
+        toolbar.setTitle(R.string.listado_gastos);
         recyclerGastos = findViewById(R.id.recycler_gastos);
         layoutManager = new LinearLayoutManager(this);
         recyclerGastos.setLayoutManager(layoutManager);

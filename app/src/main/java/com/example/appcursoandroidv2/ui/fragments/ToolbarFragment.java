@@ -132,7 +132,7 @@ public class ToolbarFragment extends Fragment {
         SQLiteDatabase db = Conexion.getInstance(getContext());
         UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
         try {
-            user = userDao.findByName("Patxi");
+            user = userDao.findById(1);
         } catch (Exception e) {
             e.printStackTrace();
         }

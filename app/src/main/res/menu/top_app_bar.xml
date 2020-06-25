@@ -5,7 +5,7 @@
     <item
         android:id="@+id/ic_showuser"
         android:icon="@drawable/ic_showuser"
-        android:title="search"
+        android:title="Info usuario"
         android:contentDescription="Información del usuario"
         app:showAsAction="ifRoom" />
 

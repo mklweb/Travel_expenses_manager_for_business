@@ -57,7 +57,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public Usuario findByName(String name) throws Exception{
         String[] args = new String[] {name};
-        String qry = "SELECT * FROM " + Constantes.TABLA_USUARIO + " WHERE " + Constantes.USUARIO_NOMBRE + "=?";
+        String qry = "SELECT * FROM " + Constantes.TABLA_USUARIO + " WHERE " + Constantes.USUARIO_ALIAS + "=?";
         Cursor cursor = db.rawQuery(qry, args);
         Usuario usuario= getResultOne(cursor);
         return usuario;

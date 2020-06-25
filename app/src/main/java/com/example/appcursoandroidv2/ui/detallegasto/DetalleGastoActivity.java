@@ -39,7 +39,7 @@ public class DetalleGastoActivity extends AppCompatActivity {
             fragment.setDatosToView(gasto);
         }
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Detalle de gasto");
+        toolbar.setTitle(R.string.titulo_detalle_gasto);
     }
 
     private void getControlViews() {

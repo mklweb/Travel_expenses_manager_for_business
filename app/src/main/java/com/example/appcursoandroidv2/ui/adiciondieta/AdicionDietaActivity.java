@@ -39,7 +39,7 @@ public class AdicionDietaActivity extends AppCompatActivity {
         lyTotal.setVisibility(View.GONE);
         fragment = (FormularioDietaFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_dieta_fragment);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Nueva dieta");
+        toolbar.setTitle(R.string.nueva_dieta);
 
     }
 

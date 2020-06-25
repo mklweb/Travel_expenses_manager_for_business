@@ -25,7 +25,7 @@ public class FiltroGastosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtro_gastos);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Consulta de gastos");
+        toolbar.setTitle(R.string.buscar_gastos);
         btnFitroGastosEnviar = findViewById(R.id.bt_filtro_gastos_enviar);
 
         fragment = (FiltroFragment) getSupportFragmentManager().findFragmentById(R.id.formulario_filtro);

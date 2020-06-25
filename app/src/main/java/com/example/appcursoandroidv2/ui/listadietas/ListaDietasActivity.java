@@ -30,7 +30,7 @@ public class ListaDietasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_dietas);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Listado de dietas");
+        toolbar.setTitle(R.string.listado_dietas);
         recyclerDietas = findViewById(R.id.recycler_dieta);
         layoutManager = new LinearLayoutManager(this);
         recyclerDietas.setLayoutManager(layoutManager);

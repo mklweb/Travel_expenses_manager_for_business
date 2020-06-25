@@ -42,13 +42,13 @@ public class InfoUsuarioActivity extends AppCompatActivity {
         tvDni= findViewById(R.id.tv_dni);
         tvLastConection= findViewById(R.id.tv_last_conection);
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Info del usuario");
+        toolbar.setTitle(R.string.info_usuario);
         avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
         UsuarioViewModel model = new ViewModelProvider(this).get(UsuarioViewModel.class);
         SQLiteDatabase db = Conexion.getInstance(InfoUsuarioActivity.this);
         UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
         try {
-            user = userDao.findByName("Patxi");
+            user = userDao.findById(1);
         } catch (Exception e) {
             e.printStackTrace();
         }

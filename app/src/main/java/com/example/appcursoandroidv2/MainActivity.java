@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_login);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("Autenticación");
+        toolbar.setTitle(R.string.maristak);
 
     }
     public boolean isNombreValid(){
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         itlPass.setError(WRONG_DATA);
                     }else{
 
-                        if (user.getPassword().equals(login.getPassword()) && user.getNameSurname().equals(login.getNombre())){
+                        if (user.getPassword().equals(login.getPassword()) && user.getUserName().equals(login.getNombre())){
                             user.setLastConection(user.getCurrentConection());
                             Date date = new Date();
                             user.setCurrentConection (date.getTime());

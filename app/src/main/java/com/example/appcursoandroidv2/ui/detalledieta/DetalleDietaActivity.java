@@ -40,7 +40,7 @@ public class DetalleDietaActivity extends AppCompatActivity {
             fragment.setDatosToView(dieta);
         }
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Detalle de dieta");
+        toolbar.setTitle(R.string.titulo_detalle_dieta);
     }
 
     private void getControlViews(){

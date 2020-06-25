@@ -78,7 +78,7 @@ public class ActivarTarActivity extends AppCompatActivity {
 
         sendHttpRequest("http://10.0.2.2:4000/infocards/user1");
         toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Gestión de tarjetas");
+        toolbar.setTitle(R.string.activar_tarjeta);
     }
 
     private void getControlViews() {
