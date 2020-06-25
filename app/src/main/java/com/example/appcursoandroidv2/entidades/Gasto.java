@@ -118,7 +118,9 @@ public class Gasto implements Serializable {
         this.precioKm = precioKm;
     }
 
-    public double getTotal() {
-        return transporte + kilometraje * precioKm + peaje + parking + restaurante + otros;
+    public String getTotal() {
+        double total = transporte + kilometraje * precioKm + peaje + parking + restaurante + otros;
+        String totalTxt = String.format("%.2f", total);
+        return totalTxt;
     }
 }
