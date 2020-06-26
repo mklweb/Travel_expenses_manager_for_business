@@ -49,7 +49,6 @@ public class ListaDietasActivity extends AppCompatActivity {
                 adapterDietas.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(ListaDietasActivity.this, "DIETA", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), DetalleDietaActivity.class);
                         // Cogemos la dieta correspondiente al item clickado y se lo pasamos en el intent
                         // a la activity de destino

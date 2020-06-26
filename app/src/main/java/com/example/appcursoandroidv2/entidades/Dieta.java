@@ -83,7 +83,7 @@ public class Dieta implements Serializable {
 
     public void setDepartment(String department) {this.department = department;}
 
-    public double getTotal() {
+    public String getTotal() {
         long ms = getFechaFin() - getFechaIni();
         int dias;
         if(ms > 0) {
@@ -93,6 +93,8 @@ public class Dieta implements Serializable {
         }
 
         double total = dias * getDieta();
-        return total;
+
+        String totalTxt = String.format("%.2f", total);
+        return totalTxt;
     }
 }

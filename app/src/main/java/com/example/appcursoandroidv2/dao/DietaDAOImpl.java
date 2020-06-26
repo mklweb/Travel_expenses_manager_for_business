@@ -139,14 +139,24 @@ public class DietaDAOImpl implements DietaDAO {
             strBuilder.append(" AND ")
                     .append(desdeImporte)
                     .append(" <= ")
-                    .append("((fecha_fin - fecha_ini) + 24 * 3600 * 1000) / (24 * 3600 * 1000) * dieta");
+                    .append("((")
+                    .append(Constantes.DIETA_FECHA_FIN)
+                    .append(" - ")
+                    .append(Constantes.DIETA_FECHA_INI)
+                    .append(") + 24 * 3600 * 1000) / (24 * 3600 * 1000) * ")
+                    .append(Constantes.DIETA_DIETA);
         }
         if(hastaImporte > 0) {
-            /** AND totalDieta <= hastaImporte */
+            /** AND hastaImporte >= totalDieta */
             strBuilder.append(" AND ")
                     .append(hastaImporte)
                     .append(" >= ")
-                    .append("((fecha_fin - fecha_ini) + 24 * 3600 * 1000) / (24 * 3600 * 1000) * dieta");
+                    .append("((")
+                    .append(Constantes.DIETA_FECHA_FIN)
+                    .append(" - ")
+                    .append(Constantes.DIETA_FECHA_INI)
+                    .append(") + 24 * 3600 * 1000) / (24 * 3600 * 1000) * ")
+                    .append(Constantes.DIETA_DIETA);
         }
         strBuilder.append(" ORDER BY ").append(Constantes.DIETA_FECHA_INI).append(" ASC");
         String sql = strBuilder.toString();

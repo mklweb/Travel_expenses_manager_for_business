@@ -152,7 +152,8 @@ public class AdapterGastos
                                     SQLiteDatabase db = Conexion.getInstance(context);
                                     GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
                                     try {
-                                        gastoDAO.remove(idGasto);
+                                        int n = gastoDAO.remove(idGasto);
+                                        Toast.makeText(context, n + " registro/s eliminado/s", Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }

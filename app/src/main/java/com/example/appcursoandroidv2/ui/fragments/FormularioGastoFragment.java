@@ -127,7 +127,7 @@ public class FormularioGastoFragment extends Fragment {
         etOther.setText(String.valueOf(gasto.getOtros()));
         etProjectGasto.setText(gasto.getPro());
         etDeparmentGasto.setText(gasto.getDep());
-        etTotalGasto.setText(String.valueOf(gasto.getTotal()));
+        etTotalGasto.setText(gasto.getTotal());
     }
 
     /** Obtine los valores de los campos y los carga en el
@@ -267,11 +267,13 @@ public class FormularioGastoFragment extends Fragment {
         SQLiteDatabase db = Conexion.getInstance(getActivity());
         GastoDAOImpl gastoDAO = new GastoDAOImpl(db);
         try {
-            gastoDAO.remove(String.valueOf(gasto.getId()));
-            db.close();
-            Toast.makeText(getActivity().getApplicationContext(), "El gasto ha sido borrado", Toast.LENGTH_SHORT).show();
+            int n = gastoDAO.remove(String.valueOf(gasto.getId()));
+            Toast toast = Toast.makeText(getActivity().getApplicationContext(), n + " registro/s eliminado/s", Toast.LENGTH_SHORT);
+            toast.show();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            db.close();
         }
     }
 

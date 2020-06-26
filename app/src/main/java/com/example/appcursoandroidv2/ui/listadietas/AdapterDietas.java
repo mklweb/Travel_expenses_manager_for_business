@@ -65,10 +65,10 @@ public class AdapterDietas
         String strEndFecha = dpEnd.getDateInTextFormat();
         holder.tvStartDateDieta.setText(strStartFecha);
         holder.tvEndDateDieta.setText(strEndFecha);
-        holder.tvProDepDieta.setText(dieta.getDepartment() + dieta.getProyect());
-        holder.tvTotalDieta.setText(String.valueOf(dieta.getTotal()));
+        holder.tvProDepDieta.setText(dieta.getProyect() + dieta.getDepartment());
+        holder.tvTotalDieta.setText(dieta.getTotal());
 
-        //=== ASIGNAMOS LOS LISTENER A LOS BOTONES DEL ViewHolder ===//
+        /** ASIGNAMOS LOS LISTENER A LOS BOTONES DEL ViewHolder */
         holder.asignarListeners();
     }
 
@@ -160,7 +160,8 @@ public class AdapterDietas
                                     SQLiteDatabase db = Conexion.getInstance(context);
                                     DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
                                     try {
-                                        dietaDAO.remove(idDieta);
+                                        int n = dietaDAO.remove(idDieta);
+                                        Toast.makeText(context, n + " registro/s eliminado/s", Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }

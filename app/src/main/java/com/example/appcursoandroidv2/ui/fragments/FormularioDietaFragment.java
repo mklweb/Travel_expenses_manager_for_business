@@ -258,7 +258,7 @@ public class FormularioDietaFragment extends Fragment {
         etDieta.setText(String.valueOf(dieta.getDieta()));
         etProjectDieta.setText(String.valueOf(dieta.getProyect()));
         etDepartmentDieta.setText(String.valueOf(dieta.getDepartment()));
-        etTotal.setText(String.valueOf(dieta.getTotal()));
+        etTotal.setText(dieta.getTotal());
     }
 
     private boolean validaStartDate() {
@@ -372,8 +372,8 @@ public class FormularioDietaFragment extends Fragment {
             SQLiteDatabase db = Conexion.getInstance(getActivity());
             DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
             try {
-                Toast.makeText(getContext() , "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
                 dietaDAO.modify(dieta);
+                Toast.makeText(getContext() , "Se han guardado los cambios", Toast.LENGTH_SHORT).show();
                 resetFormulario();
                 return true;
             } catch (Exception e) {
@@ -391,8 +391,8 @@ public class FormularioDietaFragment extends Fragment {
         SQLiteDatabase db = Conexion.getInstance(getActivity());
         DietaDAOImpl dietaDAO = new DietaDAOImpl(db);
         try {
-            Toast.makeText(getActivity().getApplicationContext(), "La dieta ha sido borrada", Toast.LENGTH_SHORT).show();
-            dietaDAO.remove(String.valueOf(dieta.getId()));
+            int n = dietaDAO.remove(String.valueOf(dieta.getId()));
+            Toast.makeText(getActivity().getApplicationContext(), n + " registro/s eliminado/s", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
