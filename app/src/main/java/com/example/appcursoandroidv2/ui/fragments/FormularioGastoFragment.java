@@ -298,6 +298,7 @@ public class FormularioGastoFragment extends Fragment {
         Pattern pattern = Pattern.compile(Constantes.DATE_VALIDATION);
         String date = etDateGasto.getText().toString();
         if(date.isEmpty()) {
+            lyDateGasto.setError("Introduzca una fecha");
             return false;
         } else if(!pattern.matcher(date).matches()) {
             lyDateGasto.setError("Fecha incorrecta");

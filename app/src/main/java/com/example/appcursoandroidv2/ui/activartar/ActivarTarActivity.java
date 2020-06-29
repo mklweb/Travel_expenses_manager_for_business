@@ -97,7 +97,8 @@ public class ActivarTarActivity extends AppCompatActivity {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
                     obtenerCoordenadas();
                 } else if (Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
-                    sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
+                    //sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
+                    sendHttpRequest(R.string.dominio + "enablecard/user1/EUROPE");
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS DENTRO DE LA UE", Toast.LENGTH_SHORT).show();
                 }
@@ -110,7 +111,8 @@ public class ActivarTarActivity extends AppCompatActivity {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
                     obtenerCoordenadas();
                 } else if (!Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
-                    sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
+                    //sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
+                    sendHttpRequest(R.string.dominio + "/enablecard/user1/INTERNATIONAL");
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS FUERA DE LA UE", Toast.LENGTH_SHORT).show();
                 }

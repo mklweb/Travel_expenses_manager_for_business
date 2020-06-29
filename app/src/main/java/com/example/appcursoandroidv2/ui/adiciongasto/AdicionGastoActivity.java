@@ -15,6 +15,7 @@ import com.example.appcursoandroidv2.database.Conexion;
 import com.example.appcursoandroidv2.ui.fragments.FormularioGastoFragment;
 import com.example.appcursoandroidv2.ui.inicio.InicioActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AdicionGastoActivity extends AppCompatActivity {
 
@@ -39,6 +40,9 @@ public class AdicionGastoActivity extends AppCompatActivity {
     }
 
     private void getControlViews() {
+       findViewById(R.id.et_total_gasto).setVisibility(View.GONE);
+       findViewById(R.id.ly_total_gasto).setVisibility(View.GONE);
+
        btnEnviar = findViewById(R.id.bt_enviar);
        etPrecioKm = findViewById(R.id.et_km_price);
     }

@@ -77,6 +77,7 @@
     <string name="nombre_y_apellido">Nombre y apellido</string>
     <string name="dni">DNI</string>
     <string name="ltima_conexi_n">Última conexión</string>
+    <string name="dominio">http://10.0.2.2:4000</string>
 
 
 </resources>

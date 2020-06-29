@@ -47,6 +47,8 @@ public class EdicionGastoActivity extends AppCompatActivity {
 
     private void getControlViews() {
         btnEnviar = findViewById(R.id.bt_enviar);
+        findViewById(R.id.et_total_gasto).setVisibility(View.GONE);
+        findViewById(R.id.ly_total_gasto).setVisibility(View.GONE);
     }
 
     private void setEventListeners() {
