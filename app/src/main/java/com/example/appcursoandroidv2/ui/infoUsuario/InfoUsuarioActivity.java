@@ -31,19 +31,12 @@ public class InfoUsuarioActivity extends AppCompatActivity {
     TextView tvDni;
     TextView tvLastConection;
     NetworkImageView avatar;
-    String strFecha;
     MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_usuario);
-        tvNombreApellido= findViewById(R.id.tv_nombre_apellido);
-        tvUserName= findViewById(R.id.tv_username);
-        tvDni= findViewById(R.id.tv_dni);
-        tvLastConection= findViewById(R.id.tv_last_conection);
-        toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle(R.string.info_usuario);
-        avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
+        configView();
         UsuarioViewModel model = new ViewModelProvider(this).get(UsuarioViewModel.class);
         SQLiteDatabase db = Conexion.getInstance(InfoUsuarioActivity.this);
         UsuarioDAOImpl userDao = new UsuarioDAOImpl(db);
@@ -78,5 +71,14 @@ public class InfoUsuarioActivity extends AppCompatActivity {
                 avatar.setImageUrl(user.getSrc(),mImageLoader);//URL en BBDD
             }
         });
+    }
+    public void configView (){
+        tvNombreApellido= findViewById(R.id.tv_nombre_apellido);
+        tvUserName= findViewById(R.id.tv_username);
+        tvDni= findViewById(R.id.tv_dni);
+        tvLastConection= findViewById(R.id.tv_last_conection);
+        toolbar = findViewById(R.id.topAppBar);
+        toolbar.setTitle(R.string.info_usuario);
+        avatar = (NetworkImageView)findViewById(R.id.iv_profile_avatar);
     }
 }

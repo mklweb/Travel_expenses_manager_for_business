@@ -104,14 +104,7 @@ public class FormularioDietaFragment extends Fragment {
                 }
             }
         });
-//        etDieta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if(!hasFocus) {
-//                    validaDieta();
-//                }
-//            }
-//        });
+
         etStartDate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -158,24 +151,7 @@ public class FormularioDietaFragment extends Fragment {
                 }
             }
         });
-//        etDieta.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                if(Double.parseDouble(etDieta.getText().toString()) > 0) {
-//                    lyDieta.setError(null);
-//                }
-//            }
-//        });
+
         ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
@@ -294,21 +270,8 @@ public class FormularioDietaFragment extends Fragment {
         }
     }
 
-//    private boolean validaDieta() {
-//        String value = etDieta.getText().toString();
-//        if(value.isEmpty()) {
-//            lyDieta.setError("Introduzca un importe en Dieta");
-//            return false;
-//        } else if(Double.parseDouble(value) > 0 ) {
-//            return true;
-//        } else {
-//            lyDieta.setError("Introduzca un importe en Dieta");
-//            return false;
-//        }
-//    }QUITADO TAMBIEN DE LAS COMPROBACIONES DE ABAJO
 
     private boolean validaCamposTexto() {
-        //boolean country = !etCountry.getText().toString().isEmpty();
         boolean city = !etCity.getText().toString().isEmpty();
         boolean proDep = !etProjectDieta.getText().toString().isEmpty() || !etDepartmentDieta.getText().toString().isEmpty();
 
