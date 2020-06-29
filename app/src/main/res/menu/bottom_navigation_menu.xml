@@ -4,23 +4,26 @@
 
     <item
         android:id="@+id/btm_gasto"
-        android:title="gasto"
+        android:title="@string/gasto"
         android:enabled="true"
         android:icon="@drawable/ic_gastos"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:contentDescription="@string/nuevo_gasto"/>
     <item
         android:id="@+id/btm_llamar"
-        android:title="llamada"
+        android:title="@string/llamada"
         android:enabled="true"
         android:icon="@drawable/ic_phone"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:contentDescription="@string/ayuda_telefonica"/>
 
     <item
         android:id="@+id/btm_dieta"
-        android:title="dieta"
+        android:title="@string/dieta"
         android:enabled="true"
         android:icon="@drawable/ic_dietas"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:contentDescription="@string/nueva_dieta"/>
 
 
 </menu>

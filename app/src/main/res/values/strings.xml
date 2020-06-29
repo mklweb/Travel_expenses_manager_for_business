@@ -17,8 +17,6 @@
     <string name="total">total</string>
     <string name="borrar">borrar</string>
     <string name="actualizar">actualizar</string>
-    <string name="nuevo_gasto">Nuevo gasto</string>
-    <string name="nueva_dieta">Nueva dieta</string>
     <string name="listado_gastos">Listado gastos</string>
     <string name="inicio">Inicio</string>
     <string name="activar_europea">activar europea</string>
@@ -52,6 +50,33 @@
     <string name="titulo_detalle_dieta">Detalle dieta</string>
     <string name="et_total_dieta">Total</string>
     <string name="info_usuario">Info usuario</string>
+    <string name="informacion_del_usuario">Información del usuario</string>
+    <string name="volver_a_inicio">Volver a inicio</string>
+    <string name="listado_de_gastos">Listado de gastos</string>
+    <string name="consultar_gastos">Consultar gastos</string>
+    <string name="listado_de_dietas">Listado de dietas</string>
+    <string name="consultar_dietas">Consultar dietas</string>
+    <string name="gestionar_el_uso_de_las_tarjetas">Gestionar el uso de las tarjetas</string>
+    <string name="configuracion_de_la_aplicacion">Configuración de la aplicación</string>
+    <string name="configuracion">Configuración</string>
+    <string name="informacion_de_la_version">Informacion de la version</string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="gasto">gasto</string>
+    <string name="nuevo_gasto">Nuevo gasto</string>
+    <string name="llamada">llamada</string>
+    <string name="ayuda_telefonica">Ayuda telefonica</string>
+    <string name="dieta">dieta</string>
+    <string name="nueva_dieta">Nueva dieta</string>
+    <string name="tarjeta_europea">Tarjeta Europea</string>
+    <string name="europe">EUROPE</string>
+    <string name="tarjeta_internacional">tarjeta internacional</string>
+    <string name="international">INTERNATIONAL</string>
+    <string name="ltima_activacion">Última activación:</string>
+    <string name="icono_de_maristak">Icono de Maristak Ikastetxea Durango</string>
+    <string name="foto_del_usuario">Foto del usuario</string>
+    <string name="nombre_y_apellido">Nombre y apellido</string>
+    <string name="dni">DNI</string>
+    <string name="ltima_conexi_n">Última conexión</string>
 
 
 </resources>

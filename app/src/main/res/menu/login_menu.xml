@@ -4,16 +4,16 @@
     <item
         android:id="@+id/mn_about"
         android:icon="@drawable/ic_info"
-        android:title="Acerca de"
-        android:contentDescription="ccccc"
+        android:title="@string/acerca_de"
+        android:contentDescription="@string/informacion_de_la_version"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/mn_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Configuración"
-        android:contentDescription="aaaaa"
+        android:title="@string/configuracion"
+        android:contentDescription="@string/configuracion_de_la_aplicacion"
         app:showAsAction="always" />
 
 

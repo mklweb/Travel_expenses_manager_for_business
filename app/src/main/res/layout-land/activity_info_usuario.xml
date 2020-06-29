@@ -19,11 +19,10 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_profile_avatar"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile_avatar" />
+        app:layout_constraintStart_toEndOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/tv_nombre_apellido"
@@ -61,6 +60,7 @@
         android:layout_height="151dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/foto_del_usuario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/navegacion_superior" />
 
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Nombre y apellido"
+        android:text="@string/nombre_y_apellido"
         android:textColor="@color/colorAccent"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/iv_profile_avatar"
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="DNI"
+        android:text="@string/dni"
         android:textColor="@color/colorAccent"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Última conexión"
+        android:text="@string/ltima_conexi_n"
         android:textColor="@color/colorAccent"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView7"

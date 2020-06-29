@@ -5,44 +5,43 @@
     <item
         android:id="@+id/ic_showuser"
         android:icon="@drawable/ic_showuser"
-        android:title="Info usuario"
-        android:contentDescription="Información del usuario"
+        android:title="@string/info_usuario"
+        android:contentDescription="@string/informacion_del_usuario"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/inicio"
-        android:icon="@drawable/ic_showuser"
         android:title="@string/inicio"
-        android:contentDescription="content_description_more"
+        android:contentDescription="@string/volver_a_inicio"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/list_gastos"
         android:title="@string/listado_gastos"
-        android:contentDescription="content_description_more"
+        android:contentDescription="@string/listado_de_gastos"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/find_gastos"
         android:title="@string/buscar_gastos"
-        android:contentDescription="content_description_more"
+        android:contentDescription="@string/consultar_gastos"
         app:showAsAction="never" />
     <item
         android:id="@+id/list_dietas"
         android:title="@string/listado_dietas"
-        android:contentDescription="content_description_more"
+        android:contentDescription="@string/listado_de_dietas"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/find_dietas"
         android:title="@string/buscar_dietas"
-        android:contentDescription="content_description_more"
+        android:contentDescription="@string/consultar_dietas"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/activ_tarjetas"
         android:title="@string/activar_tarjeta"
-        android:contentDescription="content_description_more"
+        android:contentDescription="@string/gestionar_el_uso_de_las_tarjetas"
         app:showAsAction="never" />
 
 </menu>
