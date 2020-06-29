@@ -95,6 +95,7 @@ public class ActivarTarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!permisosLocation) {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
+                    obtenerCoordenadas();
                 } else if (Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
                 } else {
@@ -107,6 +108,7 @@ public class ActivarTarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!permisosLocation) {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
+                    obtenerCoordenadas();
                 } else if (!Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
                 } else {
