@@ -54,13 +54,9 @@ public class AdicionDietaActivity extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPrecioDieta();
                 fragment.registrar();
             }
         });
     }
 
-    private void getPrecioDieta() {
-
-    }
 }

@@ -84,7 +84,10 @@ public class FormularioDietaFragment extends Fragment {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus) {
-                    validaStartDate();
+                    if(validaStartDate()) {
+                        getDatosFromView();
+                        etTotal.setText(dieta.getTotal());
+                    }
                 }
             }
         });
@@ -99,6 +102,8 @@ public class FormularioDietaFragment extends Fragment {
                         } else {
                             lyEndDate.setError(null);
                             lyEndDate.setErrorEnabled(false);
+                            getDatosFromView();
+                            etTotal.setText(dieta.getTotal());
                         }
                     };
                 }
@@ -151,7 +156,6 @@ public class FormularioDietaFragment extends Fragment {
                 }
             }
         });
-
         ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
@@ -304,8 +308,9 @@ public class FormularioDietaFragment extends Fragment {
         etCity.setText("");
         etProjectDieta.setText("");
         etDepartmentDieta.setText("");
-        etDieta.setText("");
         etTotal.setText("");
+        lyStartDate.setError(null);
+        lyStartDate.setErrorEnabled(false);
     }
 
     public Dieta getDieta() {
@@ -320,11 +325,11 @@ public class FormularioDietaFragment extends Fragment {
             try {
                 long n = dietaDAO.add(dieta);
                 Toast.makeText(getContext() , "Se ha creado una dieta con el id: " + n, Toast.LENGTH_SHORT).show();
-                resetFormulario();
             } catch (Exception e) {
                 e.printStackTrace();
             }finally {
                 db.close();
+                resetFormulario();
             }
         }
     }

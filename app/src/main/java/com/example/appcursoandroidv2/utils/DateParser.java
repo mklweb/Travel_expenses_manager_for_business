@@ -17,7 +17,7 @@ public class DateParser {
 
     //Parsea fechas en formato texto introducidas en los EditText
     public long parse(String f) {
-        Date date = null;
+        Date date = new Date(-62135769600000L); // 1 de enero del año cero
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
         try {
