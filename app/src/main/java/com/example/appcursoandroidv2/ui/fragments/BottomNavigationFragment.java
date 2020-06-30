@@ -87,7 +87,7 @@ public class BottomNavigationFragment extends Fragment {
                     call.setData(Uri.parse("tel:" + "1515"));
                     startActivity(call);
                 } else {
-                    Toast.makeText(context, "Sin los permisos de localización no podrás activar las tarjetas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Sin los permisos de llamada no puedes utilizar el servicio de ayuda", Toast.LENGTH_SHORT).show();
                 }
                 break;
 

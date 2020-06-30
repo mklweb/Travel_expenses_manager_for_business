@@ -105,7 +105,10 @@ public class FormularioDietaFragment extends Fragment {
                             getDatosFromView();
                             etTotal.setText(dieta.getTotal());
                         }
-                    };
+                    } else {
+                        lyEndDate.setErrorEnabled(true);
+                        lyEndDate.setError("Introduzca una fecha válida");
+                    }
                 }
             }
         });
