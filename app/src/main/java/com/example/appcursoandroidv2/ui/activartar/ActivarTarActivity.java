@@ -61,6 +61,7 @@ public class ActivarTarActivity extends AppCompatActivity {
     private boolean permisosLocation = false;
     private static final int PERMISOS_LOCATION = 1;
     private static String codPais = "";
+    private static String ivClicked = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +94,11 @@ public class ActivarTarActivity extends AppCompatActivity {
         ivTarjetaEurope.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ivClicked = "europe";
                 if (!permisosLocation) {
-                    Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
                     obtenerCoordenadas();
                 } else if (Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
-                    //sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS DENTRO DE LA UE", Toast.LENGTH_SHORT).show();
@@ -107,11 +108,11 @@ public class ActivarTarActivity extends AppCompatActivity {
         ivTarjetaInternational.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ivClicked = "international";
                 if (!permisosLocation) {
                     Toast.makeText(ActivarTarActivity.this, "Sin permisos de localización no se puede activar las tarjetas", Toast.LENGTH_SHORT).show();
                     obtenerCoordenadas();
                 } else if (!Constantes.UE.contains(codPais) && !codPais.isEmpty()) {
-                    //sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
                     sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
                 } else {
                     Toast.makeText(ActivarTarActivity.this, "La tarjeta no se puede activar porque NO ESTÁS FUERA DE LA UE", Toast.LENGTH_SHORT).show();
@@ -225,6 +226,11 @@ public class ActivarTarActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     permisosLocation = true;
                     obtenerCoordenadas();
+                    if(ivClicked.equals("europe")) {
+                        sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/EUROPE");
+                    } else if(ivClicked.equals("international")) {
+                        sendHttpRequest("http://10.0.2.2:4000/enablecard/user1/INTERNATIONAL");
+                    }
                 } else {
                     Toast.makeText(this, "Sin los permisos de localización no podrás activar las tarjetas", Toast.LENGTH_SHORT).show();
                 }
