@@ -1,6 +1,6 @@
 # Travel expenses manager for business
 
-###Business travel expenses and credit card manager
+Business travel expenses and credit card manager
 
 This is an academic project developed in a group by Agustín Sardón and Mikel Oceja for Maristak Ikastetxea in June 2020.
 The project is a native mobile application for android developed. It has been developed in Android Studio.
