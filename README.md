@@ -26,4 +26,4 @@ The project is a native mobile application for android developed. It has been de
 - Web service consumption
 - Use of RecyclerView, ViewModels, DAO, Volley, Country Code Picker,...
 
-#### Documentation [Spanish]([memoria_tecnica]agustin_mikel_2020.pdf)
+### Documentation [Spanish]([memoria_tecnica]agustin_mikel_2020.pdf)
